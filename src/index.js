@@ -13,7 +13,7 @@ import RecipePaths from "./Recipes";
 ReactDOM.render(
     <Router>
         <Switch>
-            <Route path="/finder">
+            <Route path="/recipes">
                 <Finder/>
             </Route>
             <Route path="/">

@@ -5,33 +5,37 @@ import Tab from "@material-ui/core/Tab";
 import logo from "./logo.png";
 import React, {useState} from "react";
 
-const styles = {
-    logo: {
-        width: "20em",
-        height: "auto"
-    },
-    tab: {
-        textTransform: "none",
-        fontSize: "1.5em"
-    }
-};
-
 export function NavBar() {
     const history = useHistory();
-    const [tabValue, setValue] = useState("home");
+    const path = window.location.pathname;
+    let initialState = "home";
+    if (path === "/recipes") {
+        initialState = "finder";
+    }
+    const [tabValue, setTabValue] = useState(initialState);
+    const styles = {
+        logo: {
+            width: "20em",
+            height: "auto"
+        },
+        tab: {
+            textTransform: "none",
+            fontSize: "1.5em"
+        }
+    };
 
     const toHome = () => {
-        setValue("home");
+        setTabValue("home");
         history.push("/");
     }
     const toAbout = () => {
-        setValue("about");
+        setTabValue("about");
     }
     const toFinder = () => {
-        setValue("finder");
+        setTabValue("finder");
     }
     const toContact = () => {
-        setValue("contact");
+        setTabValue("contact");
     }
 
     return (
@@ -40,7 +44,7 @@ export function NavBar() {
                 <Tabs value={tabValue}>
                     <Tab value="home" label="Home" style={styles.tab} onClick={toHome}/>
                     <Tab value="about" label="About" style={styles.tab} onClick={toAbout}/>
-                    <Tab value="finder" label="Recipe Finder" style={styles.tab} onClick={toFinder}/>
+                    <Tab value="finder" label="Recipes" style={styles.tab} onClick={toFinder}/>
                     <Tab value="contact" label="Contact Us" style={styles.tab} onClick={toContact}/>
                 </Tabs>
             </AppBar>

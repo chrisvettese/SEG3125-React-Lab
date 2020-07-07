@@ -15,7 +15,7 @@ function App() {
             <Typography align="center">Find a baking recipe that's perfect for you! Search for recipes by food name,
                 dietary preference, and by ingredients in your kitchen.</Typography>
             <Grid container justify="center">
-                <Button variant="contained" color="primary" onClick={() => history.push('/finder')}>Go to Recipe
+                <Button variant="contained" color="primary" onClick={() => history.push('/recipes')}>Go to Recipe
                     Finder</Button>
             </Grid>
         </div>
