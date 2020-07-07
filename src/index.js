@@ -3,19 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Finder from "./Finder";
-import * as serviceWorker from "./serviceWorker";
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom";
-
-export const styles = {
-    logo: {
-        width: "20em",
-        height: "auto"
-    }
-};
+import RecipePaths from "./Recipes";
 
 ReactDOM.render(
     <Router>
@@ -23,6 +16,7 @@ ReactDOM.render(
             <Route path="/finder">
                 <Finder/>
             </Route>
+            <RecipePaths/>
             <Route path="/">
                 <App/>
             </Route>
@@ -30,5 +24,3 @@ ReactDOM.render(
     </Router>,
     document.getElementById("root")
 );
-
-serviceWorker.unregister();
