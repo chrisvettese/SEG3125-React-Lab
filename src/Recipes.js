@@ -9,7 +9,7 @@ export function RecipePaths() {
     return (
         recipePaths.map(path => {
             return (
-                <Route path={"/recipes/" + path}>
+                <Route path={"/recipes/" + path} key={path}>
                     <Recipe/>
                 </Route>
             )

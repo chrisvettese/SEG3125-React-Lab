@@ -16,10 +16,10 @@ ReactDOM.render(
             <Route path="/finder">
                 <Finder/>
             </Route>
-            <RecipePaths/>
             <Route path="/">
                 <App/>
             </Route>
+            <RecipePaths/>
         </Switch>
     </Router>,
     document.getElementById("root")
