@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -16,10 +16,12 @@ ReactDOM.render(
             <Route exact path="/">
                 <App/>
             </Route>
-            <Route path="/recipes">
+            <Route exact path="/recipes">
                 <Finder/>
             </Route>
-            <RecipePaths/>
+            <Route path="/recipes">
+                <RecipePaths/>
+            </Route>
         </Switch>
     </Router>,
     document.getElementById("root")
