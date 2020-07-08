@@ -1,11 +1,11 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {NavBar} from "./Common";
 
 function Finder() {
     return (
-        <div>
+        <Fragment>
             <NavBar/>
-        </div>
+        </Fragment>
     );
 }
 

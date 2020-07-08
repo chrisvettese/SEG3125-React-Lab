@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -8,7 +8,7 @@ import {NavBar} from "./Common";
 function App() {
     const history = useHistory();
     return (
-        <div>
+        <Fragment>
             <NavBar/>
             <Typography align="center" variant="h3">Bake From Home</Typography>
             <Typography align="center" variant="h4">Recipe Finder</Typography>
@@ -18,7 +18,7 @@ function App() {
                 <Button variant="contained" color="primary" onClick={() => history.push('/recipes')}>Go to Recipe
                     Finder</Button>
             </Grid>
-        </div>
+        </Fragment>
     );
 }
 

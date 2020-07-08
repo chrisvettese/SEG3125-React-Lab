@@ -1,15 +1,15 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {Route} from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import {NavBar} from "./Common";
 
 const recipePaths = ["sugarCookies", "cinnamonRolls", "whiteBread", "cinnamonRaisin", "chocolateChip", "molassesCookies"];
 
-export function RecipePaths() {
+function RecipePaths() {
     return (
-        recipePaths.map(path => {
+        recipePaths.map(rPath => {
             return (
-                <Route path={"/recipes/" + path} key={path}>
+                <Route path={"/" + rPath} key={rPath}>
                     <Recipe/>
                 </Route>
             )
@@ -20,10 +20,10 @@ export function RecipePaths() {
 function Recipe() {
     const path = window.location.pathname;
     return (
-        <div>
+        <Fragment>
             <NavBar/>
             <Typography>{path}</Typography>
-        </div>
+        </Fragment>
     );
 }
 

@@ -3,7 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import logo from "./logo.png";
-import React, {useState} from "react";
+import React, {Fragment, useState} from "react";
 
 export function NavBar() {
     const history = useHistory();
@@ -39,7 +39,7 @@ export function NavBar() {
     }
 
     return (
-        <div>
+        <Fragment>
             <AppBar position="sticky">
                 <Tabs value={tabValue}>
                     <Tab value="home" label="Home" style={styles.tab} onClick={toHome}/>
@@ -49,6 +49,6 @@ export function NavBar() {
                 </Tabs>
             </AppBar>
             <img src={logo} alt="Logo" style={styles.logo}/>
-        </div>
+        </Fragment>
     )
 }
