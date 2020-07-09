@@ -8,7 +8,7 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import RecipePaths from "./Recipes";
+import Recipes from "./Recipes";
 
 ReactDOM.render(
     <Router>
@@ -20,7 +20,7 @@ ReactDOM.render(
                 <Finder/>
             </Route>
             <Route path="/recipes">
-                <RecipePaths/>
+                <Recipes/>
             </Route>
         </Switch>
     </Router>,

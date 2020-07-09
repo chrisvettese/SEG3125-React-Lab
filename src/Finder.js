@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import {NavBar} from "./Common";
+import NavBar from "./Common";
 
 function Finder() {
     return (

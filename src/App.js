@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import {useHistory} from 'react-router-dom';
-import {NavBar} from "./Common";
+import NavBar from "./Common";
 
 function App() {
     const history = useHistory();

@@ -2,7 +2,7 @@ import {useHistory} from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import logo from "./images/logo.png";
+import logo from "./resources/logo.png";
 import React, {Fragment, useState} from "react";
 
 const styles = {
@@ -16,7 +16,7 @@ const styles = {
     }
 };
 
-export function NavBar() {
+function NavBar() {
     const history = useHistory();
     const path = window.location.pathname;
     let initialState = "home";
@@ -53,3 +53,5 @@ export function NavBar() {
         </Fragment>
     )
 }
+
+export default NavBar;
