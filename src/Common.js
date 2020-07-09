@@ -2,27 +2,28 @@ import {useHistory} from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import logo from "./logo.png";
+import logo from "./images/logo.png";
 import React, {Fragment, useState} from "react";
+
+const styles = {
+    logo: {
+        width: "20em",
+        height: "auto"
+    },
+    tab: {
+        textTransform: "none",
+        fontSize: "1.5em"
+    }
+};
 
 export function NavBar() {
     const history = useHistory();
     const path = window.location.pathname;
     let initialState = "home";
-    if (path === "/recipes") {
+    if (path.includes("/recipes")) {
         initialState = "finder";
     }
     const [tabValue, setTabValue] = useState(initialState);
-    const styles = {
-        logo: {
-            width: "20em",
-            height: "auto"
-        },
-        tab: {
-            textTransform: "none",
-            fontSize: "1.5em"
-        }
-    };
 
     const toHome = () => {
         setTabValue("home");
