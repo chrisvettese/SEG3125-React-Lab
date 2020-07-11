@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import recipeData from "./resources/recipeText";
 import recipeReviews from "./resources/recipeReviews";
 import Divider from "@material-ui/core/Divider";
+import NotFound from "./NotFound";
 
 const styles = {
     recipeImage: {
@@ -40,6 +41,12 @@ function Divide() {
 function Recipes() {
     const path = window.location.pathname.substring(9)
     const rIndex = recipeData.recipePaths.indexOf(path);
+
+    if (rIndex === -1) {
+        return (
+            <NotFound/>
+        )
+    }
 
     let ratingAvg = 0;
     recipeReviews.ratings[rIndex].forEach(rating => {

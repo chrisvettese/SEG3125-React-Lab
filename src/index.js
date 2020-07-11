@@ -9,6 +9,7 @@ import {
     Route
 } from "react-router-dom";
 import Recipes from "./Recipes";
+import NotFound from "./NotFound";
 
 ReactDOM.render(
     <Router>
@@ -21,6 +22,9 @@ ReactDOM.render(
             </Route>
             <Route path="/recipes">
                 <Recipes/>
+            </Route>
+            <Route path="/">
+                <NotFound/>
             </Route>
         </Switch>
     </Router>,
