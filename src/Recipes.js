@@ -49,8 +49,7 @@ function Recipes() {
             });
             ratingAvg /= recipeReviews.ratings[rIndex].length;
             ratingAvg = (Math.round(ratingAvg * 10) / 10).toFixed(1)
-            const ratingAvgNum = parseInt(ratingAvg);
-
+            const ratingAvgNum = parseFloat(ratingAvg);
             const reviewWord = recipeReviews.ratings[rIndex].length === 1 ? " review" : " reviews";
 
             return (
