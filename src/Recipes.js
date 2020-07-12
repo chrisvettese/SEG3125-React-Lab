@@ -39,13 +39,13 @@ function Divide() {
 }
 
 function Recipes() {
-    const path = window.location.pathname.substring(9)
+    const path = window.location.pathname.substring(9);
     const rIndex = recipeData.recipePaths.indexOf(path);
 
     if (rIndex === -1) {
         return (
             <NotFound/>
-        )
+        );
     }
 
     let ratingAvg = 0;

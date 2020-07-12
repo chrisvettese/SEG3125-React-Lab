@@ -4,17 +4,24 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import logo from "./resources/logo.png";
 import React, {Fragment, useState} from "react";
+import {withStyles} from "@material-ui/core";
 
 const styles = {
     logo: {
         width: "20em",
         height: "auto"
-    },
-    tab: {
-        textTransform: "none",
-        fontSize: "1.5em"
     }
 };
+
+const NavTab = withStyles({
+    root: {
+        textTransform: "none",
+        fontSize: "1.5em",
+        "&:hover": {
+            backgroundColor: "#5465BF"
+        }
+    }
+})(Tab);
 
 function NavBar() {
     const history = useHistory();
@@ -23,30 +30,26 @@ function NavBar() {
     if (path.includes("/recipes")) {
         initialState = "finder";
     }
+    if (history.location.state !== undefined && history.location.state.tab !== undefined) {
+        initialState = history.location.state.tab;
+    }
     const [tabValue, setTabValue] = useState(initialState);
 
-    const toHome = () => {
-        setTabValue("home");
-        history.push("/");
-    }
-    const toAbout = () => {
-        setTabValue("about");
-    }
-    const toFinder = () => {
-        setTabValue("finder");
-    }
-    const toContact = () => {
-        setTabValue("contact");
+    function changeTab(tab) {
+        if (tab !== "finder" || tabValue !== "finder") {
+            history.push("/", {tab: tab});
+        }
+        setTabValue(tab);
     }
 
     return (
         <Fragment>
             <AppBar position="sticky">
                 <Tabs value={tabValue}>
-                    <Tab value="home" label="Home" style={styles.tab} onClick={toHome}/>
-                    <Tab value="about" label="About" style={styles.tab} onClick={toAbout}/>
-                    <Tab value="finder" label="Recipes" style={styles.tab} onClick={toFinder}/>
-                    <Tab value="contact" label="Contact Us" style={styles.tab} onClick={toContact}/>
+                    <NavTab value="home" label="Home" onClick={() => changeTab("home")}/>
+                    <NavTab value="about" label="About" onClick={() => changeTab("about")}/>
+                    <NavTab value="finder" label="Recipes" onClick={() => changeTab("finder")}/>
+                    <NavTab value="contact" label="Contact Us" onClick={() => changeTab("contact")}/>
                 </Tabs>
             </AppBar>
             <img src={logo} alt="Logo" style={styles.logo}/>
