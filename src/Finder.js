@@ -13,8 +13,19 @@ import {useHistory} from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
-const styles = {
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
     recipeMargin: {
         marginLeft: "10%",
         maxWidth: "70%"
@@ -43,21 +54,17 @@ const styles = {
         fontWeight: "bold",
         marginLeft: "10%",
         maxWidth: "70%"
+    },
+    boldFont: {
+        fontWeight: "bold"
+    },
+    standardFont: {
+        fontSize: "1.1em"
     }
-};
-
-function Icons({rIndex}) {
-    if (recipeData.vegan[rIndex]) {
-        return <img src={Vegan} style={styles.dietIcon} title="Vegan" alt="Vegan"/>
-    }
-    if (recipeData.glutenFree[rIndex]) {
-        return <img src={GlutenFree} style={styles.dietIcon} title="Gluten Free" alt="Gluten Free"/>
-    }
-    return <Fragment/>
-}
-
+}));
 
 function Finder() {
+    const classes = useStyles();
     const history = useHistory();
 
     const initialRecipesFound = new Array(recipeData.names.length);
@@ -67,20 +74,27 @@ function Finder() {
     const [recipesFound, setRecipesFound] = useState(initialRecipesFound);
     const [recipeText, setRecipeText] = useState(" Recipes Found");
     const [preferences, setPreferences] = useState([false, false]);
+    const [searchStr, setSearchStr] = useState("");
+    const [recipeType, setRecipeType] = useState('');
+
+    function Icons({rIndex}) {
+        if (recipeData.vegan[rIndex]) {
+            return <img src={Vegan} className={classes.dietIcon} title="Vegan" alt="Vegan"/>
+        }
+        if (recipeData.glutenFree[rIndex]) {
+            return <img src={GlutenFree} className={classes.dietIcon} title="Gluten Free" alt="Gluten Free"/>
+        }
+        return <Fragment/>
+    }
+
+    function updateType(event) {
+        setRecipeType(event.target.value);
+        generateList(searchStr, preferences[0], preferences[1], event.target.value)
+    }
 
     function searchRecipes(event) {
-        const newRecipes = [];
-        for (let i = 0; i < recipeData.names.length; i++) {
-            if (recipeData.names[i].toLowerCase().includes(event.target.value.toLowerCase())) {
-                newRecipes.push(i);
-            }
-        }
-        setRecipesFound(newRecipes);
-        if (newRecipes.length === 1) {
-            setRecipeText(" Recipe Found");
-        } else {
-            setRecipeText(" Recipes Found");
-        }
+        setSearchStr(event.target.value);
+        generateList(event.target.value, preferences[0], preferences[1], recipeType)
     }
 
     function updatePreference(preference) {
@@ -90,11 +104,28 @@ function Finder() {
         } else {
             glutenFree = !glutenFree;
         }
+        setPreferences([vegan, glutenFree]);
+        generateList(searchStr, vegan, glutenFree, recipeType);
+    }
+
+    function generateList(searchStr, isVegan, isGlutenFree, recipeType) {
         const newRecipes = [];
+        const searchActive = searchStr !== "";
+        const typeActive = recipeType !== "";
         for (let i = 0; i < recipeData.names.length; i++) {
-            if ((!vegan || recipeData.vegan[i]) && (!glutenFree || recipeData.glutenFree[i])) {
-                newRecipes.push(i);
+            if (searchActive && !recipeData.names[i].toLowerCase().includes(searchStr.toLowerCase())) {
+                continue;
             }
+            if (isVegan && !recipeData.vegan[i]) {
+                continue;
+            }
+            if (isGlutenFree && !recipeData.glutenFree[i]) {
+                continue;
+            }
+            if (typeActive && recipeType !== recipeData.types[i]) {
+                continue;
+            }
+            newRecipes.push(i);
         }
         setRecipesFound(newRecipes);
         if (newRecipes.length === 1) {
@@ -102,22 +133,17 @@ function Finder() {
         } else {
             setRecipeText(" Recipes Found");
         }
-        if (preference === "vegan") {
-            setPreferences([!preferences[0], preferences[1]]);
-        } else {
-            setPreferences([preferences[0], !preferences[1]]);
-        }
     }
 
     return (
         <Fragment>
             <NavBar/>
-            <Typography align="center" variant="h3" style={{fontWeight: "bold"}}>Search For Recipes</Typography>
-            <Typography style={styles.recipeMargin} variant="h4">Filter by...</Typography>
-            <Grid container justify="space-between" alignItems="stretch" style={styles.recipeMargin}>
+            <Typography align="center" variant="h3" className={classes.boldFont}>Search For Recipes</Typography>
+            <Typography className={classes.recipeMargin} variant="h4">Filter by...</Typography>
+            <Grid container justify="space-between" alignItems="stretch" className={classes.recipeMargin}>
                 <Grid item>
                     <TextField id="outlined-basic" label="Recipe Name" variant="outlined"
-                               onChange={(e) => searchRecipes(e)}/>
+                               onChange={searchRecipes}/>
                 </Grid>
                 <Grid item>
                     <Typography>Dietary preference:</Typography>
@@ -129,11 +155,27 @@ function Finder() {
                                       label="Gluten-free"/>
                 </Grid>
                 <Grid item>
-                    <Typography>Ingredients:</Typography>
+                    <Typography>Type of recipe:</Typography>
+                    <FormControl className={classes.formControl}>
+                        <Select
+                            value={recipeType}
+                            onChange={updateType}
+                            displayEmpty
+                            className={classes.selectEmpty}
+                            inputProps={{'aria-label': 'Recipe Type'}}
+                        >
+                            <MenuItem value="">
+                                <em>Any</em>
+                            </MenuItem>
+                            <MenuItem value="cookies">Cookies</MenuItem>
+                            <MenuItem value="pastries">Pastries</MenuItem>
+                            <MenuItem value="bread">Bread</MenuItem>
+                        </Select>
+                    </FormControl>
                 </Grid>
             </Grid>
             <br/>
-            <Typography style={styles.recipeFound} variant="h4">{recipesFound.length + recipeText}</Typography>
+            <Typography className={classes.recipeFound} variant="h4">{recipesFound.length + recipeText}</Typography>
             <Divider/>
             <br/>
             {
@@ -146,29 +188,29 @@ function Finder() {
                     return (
                         <Fragment key={i}>
                             <Grid container alignItems="flex-start">
-                                <Grid container item xs={6} style={styles.recipeMargin}>
+                                <Grid container item xs={6} className={classes.recipeMargin}>
                                     <Grid container item>
                                         <Typography variant={"h5"}>{recipeData.names[i] + "\u00a0"}</Typography>
                                         <Icons rIndex={i}/>
                                     </Grid>
                                     <Grid container item>
-                                        <Typography style={{fontSize: "1.1em"}}>{ratingAvg + "\u00a0"}</Typography>
+                                        <Typography className={classes.standardFont}>{ratingAvg + "\u00a0"}</Typography>
                                         <Divider orientation="vertical" flexItem/>
                                         <Typography>{"\u00a0"}</Typography>
                                         <Rating value={ratingNum} precision={0.1} readOnly/>
-                                        <Typography>{"\u00a0"}</Typography>
+                                        <Typography >{"\u00a0"}</Typography>
                                         <Divider orientation="vertical" flexItem/>
                                         <Typography
-                                            style={{fontSize: "1.1em"}}>{"\u00a0" + recipeReviews.ratings[i].length + reviewWord}</Typography>
+                                            className={classes.standardFont}>{"\u00a0" + recipeReviews.ratings[i].length + reviewWord}</Typography>
                                     </Grid>
-                                    <Typography style={styles.paragraphFade}>{shortDescription}</Typography>
+                                    <Typography className={classes.paragraphFade}>{shortDescription}</Typography>
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <img style={styles.recipeImage} src={recipeData.images[i]}
+                                    <img className={classes.recipeImage} src={recipeData.images[i]}
                                          alt={recipeData.names[i]}/>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Button style={styles.recipeMargin} variant="contained" color="primary"
+                                    <Button className={classes.recipeMargin} variant="contained" color="primary"
                                             onClick={() => history.push("/recipes/" + recipeData.paths[i])}>
                                         Go To Recipe
                                     </Button>

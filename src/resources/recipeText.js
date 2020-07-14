@@ -10,6 +10,7 @@ const recipeData = {
     names: ["Sugar Cookies", "Cinnamon Rolls", "White Bread", "Cinnamon Raisin Bagels", "Chocolate Chip Cookies", "Molasses Cookies"],
     vegan: [false, false, false, false, true, false],
     glutenFree: [false, false, true, false, false, false],
+    types: ["cookies", "pastries", "bread", "bread", "cookies", "cookies"],
     images: [SugarCookies, CinnamonRolls, WhiteBread, CinnamonRaisin, ChocolateChip, MolassesCookies],
     descriptions: [
         "We have found The Best Sugar Cookie Recipe ever and we couldn’t wait to share it so that everyone can have super yummy homemade sugar cookies.\n\nAdd the 4 sticks (2 cups) of butter and 2 cups of white sugar to your mixer.  A word about the butter, we use Sweet Cream Salted Butter when we are baking and I think it tastes great with these sugar cookies too.  The butter needs to be softened but still cold.  A prime culprit for dry sugar cookie dough is butter than is too warm and soft.  I let the butter sit out on the counter for just under an hour before I start making the cookies – this seems to be the perfect amount of time for me.  The butter is still cold to the touch but you can press into the stick with your fingers. In the past, when in a rush, I have softened the butter in the microwave but inevitably the dough that I get is on the “crumbly” side.",
