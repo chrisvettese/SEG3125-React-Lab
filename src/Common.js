@@ -5,6 +5,7 @@ import Tab from "@material-ui/core/Tab";
 import logo from "./resources/logo.png";
 import React, {Fragment, useState} from "react";
 import {withStyles} from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
 
 const styles = {
     logo: {
@@ -22,6 +23,16 @@ const NavTab = withStyles({
         }
     }
 })(Tab);
+
+export function Divide() {
+    return (
+        <Fragment>
+            <br/>
+            <Divider/>
+            <br/>
+        </Fragment>
+    );
+}
 
 function NavBar() {
     const history = useHistory();

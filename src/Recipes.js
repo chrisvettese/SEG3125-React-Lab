@@ -1,9 +1,9 @@
-import React, {Fragment} from "react";
+import React from "react";
 import {Route} from "react-router-dom";
 import {HashLink} from 'react-router-hash-link';
 import Typography from "@material-ui/core/Typography";
 import Rating from '@material-ui/lab/Rating';
-import NavBar from "./Common";
+import NavBar, {Divide} from "./Common";
 import Grid from "@material-ui/core/Grid";
 
 import recipeData from "./resources/recipeText";
@@ -19,7 +19,7 @@ const styles = {
     recipeParagraph: {
         marginLeft: "10%",
         maxWidth: "70%",
-        fontSize: "1.2em",
+        fontSize: "1.1em",
         whiteSpace: "pre-line"
     },
     recipeStandard: {
@@ -27,16 +27,6 @@ const styles = {
         maxWidth: "70%"
     }
 };
-
-function Divide() {
-    return (
-        <Fragment>
-            <br/>
-            <Divider/>
-            <br/>
-        </Fragment>
-    );
-}
 
 function Recipes() {
     const path = window.location.pathname.substring(9);
@@ -66,7 +56,7 @@ function Recipes() {
                 <Divider orientation="vertical" flexItem/>
                 <Typography>{"\u00a0"}</Typography>
                 <HashLink to={window.location.pathname + "#reviews"}>
-                    <Typography>{recipeReviews.ratings[rIndex].length + reviewWord}</Typography>
+                    <Typography style={{fontSize: "1.1em"}}>{recipeReviews.ratings[rIndex].length + reviewWord}</Typography>
                 </HashLink>
             </Grid>
             <br/>
@@ -85,13 +75,13 @@ function Recipes() {
             <Divide/>
             <Typography style={styles.recipeStandard} variant="h4" id="reviews">Reviews</Typography>
             <Grid container style={styles.recipeStandard}>
-                <Typography>{ratingAvg + "\u00a0"}</Typography>
+                <Typography style={{fontSize: "1.1em"}}>{ratingAvg + "\u00a0"}</Typography>
                 <Divider orientation="vertical" flexItem/>
                 <Typography>{"\u00a0"}</Typography>
                 <Rating value={ratingAvgNum} precision={0.1} readOnly/>
                 <Typography>{"\u00a0"}</Typography>
                 <Divider orientation="vertical" flexItem/>
-                <Typography>{"\u00a0" + recipeReviews.ratings[rIndex].length + reviewWord}</Typography>
+                <Typography style={{fontSize: "1.1em"}}>{"\u00a0" + recipeReviews.ratings[rIndex].length + reviewWord}</Typography>
             </Grid>
         </Route>
     )
