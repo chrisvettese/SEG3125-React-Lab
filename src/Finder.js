@@ -146,7 +146,7 @@ function Finder() {
                                onChange={searchRecipes}/>
                 </Grid>
                 <Grid item>
-                    <Typography>Dietary preference:</Typography>
+                    <Typography>Dietary preferences:</Typography>
                     <FormControlLabel value="vegan" control={<Checkbox onChange={() => updatePreference("vegan")}/>}
                                       label="Vegan"/>
                     <br/>

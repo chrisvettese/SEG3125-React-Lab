@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {Route} from "react-router-dom";
 import {HashLink} from 'react-router-hash-link';
 import Typography from "@material-ui/core/Typography";
@@ -78,8 +78,24 @@ function Recipes() {
                 <Typography>{"\u00a0"}</Typography>
                 <Divider orientation="vertical" flexItem/>
                 <Typography
-                    style={{fontSize: "1.1em"}}>{"\u00a0" + recipeReviews.ratings[rIndex].length + reviewWord}</Typography>
+                    style={{fontSize: "1.1em"}}>{"\u00a0" + recipeReviews.ratings[rIndex].length + reviewWord}
+                </Typography>
             </Grid>
+            <br/>
+            {
+                recipeReviews.reviewerNames[rIndex].map((name, index) => {
+                    return (
+                        <Fragment>
+                            <Grid container>
+                                <Typography variant="h5" style={styles.recipeStandard}>{name}</Typography>
+                                <Rating value={recipeReviews.ratings[rIndex][index]} readOnly/>
+                            </Grid>
+                            <Typography style={styles.recipeParagraph}>{recipeReviews.reviews[rIndex][index]}</Typography>
+                            <br/>
+                        </Fragment>
+                    )
+                })
+            }
         </Route>
     )
 }
