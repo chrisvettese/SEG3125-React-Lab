@@ -10,6 +10,8 @@ import recipeData from "./resources/recipeText";
 import recipeReviews from "./resources/recipeReviews";
 import Divider from "@material-ui/core/Divider";
 import NotFound from "./NotFound";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const styles = {
     recipeImage: {
@@ -25,6 +27,10 @@ const styles = {
     recipeStandard: {
         marginLeft: "10%",
         maxWidth: "70%"
+    },
+    textField: {
+        marginLeft: "10%",
+        width: "30em"
     }
 };
 
@@ -82,6 +88,20 @@ function Recipes() {
                 </Typography>
             </Grid>
             <br/>
+            <Rating style={styles.recipeStandard}/>
+            <br/>
+            <TextField
+                id="outlined-multiline-static"
+                label="Leave Feedback"
+                multiline
+                rows={4}
+                style={styles.textField}
+                variant="outlined"
+            />
+            <br/><br/>
+            <Button style={styles.recipeStandard} variant="contained" color="primary">Post</Button>
+            <br/>
+            <Divide/>
             {
                 recipeReviews.reviewerNames[rIndex].map((name, index) => {
                     return (
