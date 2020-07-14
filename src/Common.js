@@ -6,6 +6,7 @@ import logo from "./resources/logo.png";
 import React, {Fragment, useState} from "react";
 import {withStyles} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
+import recipeReviews from "./resources/recipeReviews";
 
 const styles = {
     logo: {
@@ -32,6 +33,16 @@ export function Divide() {
             <br/>
         </Fragment>
     );
+}
+
+export function getRatingAverage(rIndex) {
+    let ratingAvg = 0;
+    recipeReviews.ratings[rIndex].forEach(rating => {
+        ratingAvg += rating;
+    });
+    ratingAvg /= recipeReviews.ratings[rIndex].length;
+    ratingAvg = (Math.round(ratingAvg * 10) / 10).toFixed(1);
+    return ratingAvg;
 }
 
 function NavBar() {

@@ -3,7 +3,7 @@ import {Route} from "react-router-dom";
 import {HashLink} from 'react-router-hash-link';
 import Typography from "@material-ui/core/Typography";
 import Rating from '@material-ui/lab/Rating';
-import NavBar, {Divide} from "./Common";
+import NavBar, {Divide, getRatingAverage} from "./Common";
 import Grid from "@material-ui/core/Grid";
 
 import recipeData from "./resources/recipeText";
@@ -38,12 +38,7 @@ function Recipes() {
         );
     }
 
-    let ratingAvg = 0;
-    recipeReviews.ratings[rIndex].forEach(rating => {
-        ratingAvg += rating;
-    });
-    ratingAvg /= recipeReviews.ratings[rIndex].length;
-    ratingAvg = (Math.round(ratingAvg * 10) / 10).toFixed(1)
+    const ratingAvg = getRatingAverage(rIndex);
     const ratingAvgNum = parseFloat(ratingAvg);
     const reviewWord = recipeReviews.ratings[rIndex].length === 1 ? " review" : " reviews";
 
