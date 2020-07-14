@@ -32,8 +32,9 @@ const styles = {
         WebkitTextFillColor: "transparent"
     },
     recipeImage: {
-        width: "10em",
-        height: "auto"
+        width: "13em",
+        height: "auto",
+        paddingLeft: "5em"
     }
 };
 
@@ -63,12 +64,12 @@ function Finder() {
                     const ratingAvg = getRatingAverage(i);
                     const ratingNum = parseFloat(ratingAvg);
                     const reviewWord = recipeReviews.ratings[i].length === 1 ? " review" : " reviews";
-                    const maxDescIndex = Math.min(300, recipeData.recipeParagraphs[i].length)
+                    const maxDescIndex = Math.min(800, recipeData.recipeParagraphs[i].length)
                     const shortDescription = recipeData.recipeParagraphs[i].substring(0, maxDescIndex);
                     return (
                         <Fragment key={i}>
-                            <Grid container style={styles.recipeMargin}>
-                                <Grid container item xs={6}>
+                            <Grid container alignItems="flex-start">
+                                <Grid container item xs={6} style={styles.recipeMargin}>
                                     <Grid container item>
                                         <Typography variant={"h5"}>{recipeData.recipeNames[i] + "\u00a0"}</Typography>
                                         <Icons rIndex={i}/>
@@ -84,14 +85,15 @@ function Finder() {
                                             style={{fontSize: "1.1em"}}>{"\u00a0" + recipeReviews.ratings[i].length + reviewWord}</Typography>
                                     </Grid>
                                     <Typography style={styles.paragraphFade}>{shortDescription}</Typography>
-                                    <br/>
+                                </Grid>
+                                <Grid container item xs={3}>
+                                    <img style={styles.recipeImage} src={recipeData.recipeImages[i]} alt={recipeData.recipeNames[i]}/>
+                                </Grid>
+                                <Grid container item xs={12}>
                                     <Button style={styles.recipeMargin} variant="contained" color="primary"
                                             onClick={() => history.push("/recipes/" + recipeData.recipePaths[i])}>
                                         Go To Recipe
                                     </Button>
-                                </Grid>
-                                <Grid container item xs={6}>
-                                    <img style={styles.recipeImage} src={recipeData.recipeImages[i]} alt={recipeData.recipeNames[i]}/>
                                 </Grid>
                             </Grid>
                             <br/>
