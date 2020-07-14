@@ -30,7 +30,7 @@ const styles = {
 
 function Recipes() {
     const path = window.location.pathname.substring(9);
-    const rIndex = recipeData.recipePaths.indexOf(path);
+    const rIndex = recipeData.paths.indexOf(path);
 
     if (rIndex === -1) {
         return (
@@ -45,28 +45,29 @@ function Recipes() {
     return (
         <Route path={"/recipes/" + path} key={path}>
             <NavBar/>
-            <Typography align="center" variant="h3">{recipeData.recipeNames[rIndex] + "\u00a0"}</Typography>
+            <Typography align="center" variant="h3">{recipeData.names[rIndex] + "\u00a0"}</Typography>
             <Grid container justify="center">
                 <Rating value={ratingAvgNum} precision={0.1} readOnly/>
                 <Divider orientation="vertical" flexItem/>
                 <Typography>{"\u00a0"}</Typography>
                 <HashLink to={window.location.pathname + "#reviews"}>
-                    <Typography style={{fontSize: "1.1em"}}>{recipeReviews.ratings[rIndex].length + reviewWord}</Typography>
+                    <Typography
+                        style={{fontSize: "1.1em"}}>{recipeReviews.ratings[rIndex].length + reviewWord}</Typography>
                 </HashLink>
             </Grid>
             <br/>
             <Grid container justify="center">
-                <img src={recipeData.recipeImages[rIndex]} alt={recipeData.recipeNames[rIndex]}
+                <img src={recipeData.images[rIndex]} alt={recipeData.names[rIndex]}
                      style={styles.recipeImage}/>
             </Grid>
             <br/>
-            <Typography style={styles.recipeParagraph}>{recipeData.recipeParagraphs[rIndex]}</Typography>
+            <Typography style={styles.recipeParagraph}>{recipeData.descriptions[rIndex]}</Typography>
             <Divide/>
             <Typography style={styles.recipeStandard} variant="h4">Ingredients</Typography>
-            <Typography style={styles.recipeParagraph}>{recipeData.recipeIngredients[rIndex]}</Typography>
+            <Typography style={styles.recipeParagraph}>{recipeData.ingredients[rIndex]}</Typography>
             <Divide/>
             <Typography style={styles.recipeStandard} variant="h4">Instructions</Typography>
-            <Typography style={styles.recipeParagraph}>{recipeData.recipeInstructions[rIndex]}</Typography>
+            <Typography style={styles.recipeParagraph}>{recipeData.instructions[rIndex]}</Typography>
             <Divide/>
             <Typography style={styles.recipeStandard} variant="h4" id="reviews">Reviews</Typography>
             <Grid container style={styles.recipeStandard}>
@@ -76,7 +77,8 @@ function Recipes() {
                 <Rating value={ratingAvgNum} precision={0.1} readOnly/>
                 <Typography>{"\u00a0"}</Typography>
                 <Divider orientation="vertical" flexItem/>
-                <Typography style={{fontSize: "1.1em"}}>{"\u00a0" + recipeReviews.ratings[rIndex].length + reviewWord}</Typography>
+                <Typography
+                    style={{fontSize: "1.1em"}}>{"\u00a0" + recipeReviews.ratings[rIndex].length + reviewWord}</Typography>
             </Grid>
         </Route>
     )
