@@ -142,7 +142,8 @@ function Finder() {
             <Typography className={classes.recipeMargin} variant="h4">Filter by...</Typography>
             <Grid container justify="space-between" alignItems="stretch" className={classes.recipeMargin}>
                 <Grid item>
-                    <TextField id="outlined-basic" label="Recipe Name" variant="outlined"
+                    <Typography>Recipe title:</Typography>
+                    <TextField id="outlined-basic" label="Title" variant="outlined"
                                onChange={searchRecipes}/>
                 </Grid>
                 <Grid item>
@@ -180,7 +181,7 @@ function Finder() {
             <br/>
             {
                 recipesFound.map(i => {
-                    const ratingAvg = getRatingAverage(i);
+                    const ratingAvg = getRatingAverage(recipeReviews.ratings[i]);
                     const ratingNum = parseFloat(ratingAvg);
                     const reviewWord = recipeReviews.ratings[i].length === 1 ? " review" : " reviews";
                     const maxDescIndex = Math.min(800, recipeData.descriptions[i].length)
@@ -198,7 +199,7 @@ function Finder() {
                                         <Divider orientation="vertical" flexItem/>
                                         <Typography>{"\u00a0"}</Typography>
                                         <Rating value={ratingNum} precision={0.1} readOnly/>
-                                        <Typography >{"\u00a0"}</Typography>
+                                        <Typography>{"\u00a0"}</Typography>
                                         <Divider orientation="vertical" flexItem/>
                                         <Typography
                                             className={classes.standardFont}>{"\u00a0" + recipeReviews.ratings[i].length + reviewWord}</Typography>

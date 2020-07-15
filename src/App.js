@@ -11,7 +11,7 @@ function App() {
         <Fragment>
             <NavBar/>
             <Typography align="center" variant="h3">Bake From Home</Typography>
-            <Typography align="center" variant="h4">Recipe Finder</Typography>
+            <Typography align="center" variant="h4">Recipes</Typography>
             <Typography align="center">Find a baking recipe that's perfect for you! Search for recipes by food name,
                 dietary preference, and by ingredients in your kitchen.</Typography>
             <Grid container justify="center">

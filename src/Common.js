@@ -6,14 +6,14 @@ import logo from "./resources/logo.png";
 import React, {Fragment, useState} from "react";
 import {withStyles} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
-import recipeReviews from "./resources/recipeReviews";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
-const styles = {
+const useStyles = makeStyles(() => ({
     logo: {
         width: "20em",
         height: "auto"
     }
-};
+}));
 
 const NavTab = withStyles({
     root: {
@@ -35,18 +35,19 @@ export function Divide() {
     );
 }
 
-export function getRatingAverage(rIndex) {
+export function getRatingAverage(ratings) {
     let ratingAvg = 0;
-    recipeReviews.ratings[rIndex].forEach(rating => {
+    ratings.forEach(rating => {
         ratingAvg += rating;
     });
-    ratingAvg /= recipeReviews.ratings[rIndex].length;
+    ratingAvg /= ratings.length;
     ratingAvg = (Math.round(ratingAvg * 10) / 10).toFixed(1);
     return ratingAvg;
 }
 
 function NavBar() {
     const history = useHistory();
+    const classes = useStyles();
     const path = window.location.pathname;
     let initialState = "home";
     if (path.includes("/recipes")) {
@@ -74,7 +75,7 @@ function NavBar() {
                     <NavTab value="contact" label="Contact Us" onClick={() => changeTab("contact")}/>
                 </Tabs>
             </AppBar>
-            <img src={logo} alt="Logo" style={styles.logo}/>
+            <img src={logo} alt="Logo" className={classes.logo}/>
         </Fragment>
     )
 }

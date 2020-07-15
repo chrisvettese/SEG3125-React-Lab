@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 import {Route} from "react-router-dom";
 import {HashLink} from 'react-router-hash-link';
 import Typography from "@material-ui/core/Typography";
@@ -29,6 +29,7 @@ const styles = {
         maxWidth: "70%"
     },
     textField: {
+        marginTop: "1em",
         marginLeft: "10%",
         width: "30em"
     }
@@ -37,6 +38,22 @@ const styles = {
 function Recipes() {
     const path = window.location.pathname.substring(9);
     const rIndex = recipeData.paths.indexOf(path);
+    let tmpIndex = rIndex;
+    if (rIndex === -1) {
+        tmpIndex = 0;
+    }
+
+    const [ratingAvg, setRatingAvg] = useState(getRatingAverage(recipeReviews.ratings[tmpIndex]));
+    const [ratingAvgNum, setRatingAvgNum] = useState(parseFloat(ratingAvg));
+    const [reviewWord, setReviewWord] = useState(recipeReviews.ratings[tmpIndex].length === 1 ? " review" : " reviews");
+    const [reviewerNames, setReviewerNames] = useState(recipeReviews.reviewerNames[tmpIndex]);
+    const [ratings, setRatings] = useState(recipeReviews.ratings[tmpIndex]);
+    const [reviews, setReviews] = useState(recipeReviews.reviews[tmpIndex]);
+
+    const [newName, setNewName] = useState("");
+    const [newReview, setNewReview] = useState("");
+    const [newRating, setNewRating] = useState(0);
+    const [showNameError, setShowNameError] = useState(false);
 
     if (rIndex === -1) {
         return (
@@ -44,9 +61,28 @@ function Recipes() {
         );
     }
 
-    const ratingAvg = getRatingAverage(rIndex);
-    const ratingAvgNum = parseFloat(ratingAvg);
-    const reviewWord = recipeReviews.ratings[rIndex].length === 1 ? " review" : " reviews";
+    function postReview() {
+        if (newName === "") {
+            setShowNameError(true);
+            return;
+        }
+        const newNames = [newName].concat(reviewerNames);
+        const newRatings = [newRating].concat(ratings);
+        const newReviews = [newReview].concat(reviews);
+        const newRatingAvg = getRatingAverage(newRatings);
+        const newRatingAvgNum = parseFloat(ratingAvg);
+
+        setReviewWord(newReviews.length === 1 ? " review" : " reviews");
+        setReviewerNames(newNames);
+        setRatingAvg(newRatingAvg);
+        setRatingAvgNum(newRatingAvgNum);
+        setRatings(newRatings);
+        setReviews(newReviews);
+
+        setNewName("");
+        setNewRating(0);
+        setNewReview("");
+    }
 
     return (
         <Route path={"/recipes/" + path} key={path}>
@@ -58,7 +94,7 @@ function Recipes() {
                 <Typography>{"\u00a0"}</Typography>
                 <HashLink to={window.location.pathname + "#reviews"}>
                     <Typography
-                        style={{fontSize: "1.1em"}}>{recipeReviews.ratings[rIndex].length + reviewWord}</Typography>
+                        style={{fontSize: "1.1em"}}>{ratings.length + reviewWord}</Typography>
                 </HashLink>
             </Grid>
             <br/>
@@ -84,33 +120,52 @@ function Recipes() {
                 <Typography>{"\u00a0"}</Typography>
                 <Divider orientation="vertical" flexItem/>
                 <Typography
-                    style={{fontSize: "1.1em"}}>{"\u00a0" + recipeReviews.ratings[rIndex].length + reviewWord}
+                    style={{fontSize: "1.1em"}}>{"\u00a0" + ratings.length + reviewWord}
                 </Typography>
             </Grid>
             <br/>
-            <Rating style={styles.recipeStandard}/>
+            <Rating name="review-rating" value={newRating} style={styles.recipeStandard}
+                    onChange={(_, newValue) => setNewRating(newValue)}/>
+            <br/>
+            <TextField
+                style={styles.recipeStandard}
+                label="Name"
+                variant="outlined"
+                value={newName}
+                onChange={e => {
+                    setNewName(e.target.value);
+                    setShowNameError(false);
+                }}
+                error={showNameError}
+                helperText={showNameError ? "Please enter your name." : ""}
+            />
             <br/>
             <TextField
                 id="outlined-multiline-static"
-                label="Leave Feedback"
+                label="Leave feedback (optional)"
                 multiline
                 rows={4}
                 style={styles.textField}
                 variant="outlined"
+                value={newReview}
+                onChange={e => setNewReview(e.target.value)}
             />
             <br/><br/>
-            <Button style={styles.recipeStandard} variant="contained" color="primary">Post</Button>
+            <Button style={styles.recipeStandard} variant="contained" color="primary" onClick={() => postReview()}>
+                Post
+            </Button>
             <br/>
             <Divide/>
             {
-                recipeReviews.reviewerNames[rIndex].map((name, index) => {
+                reviewerNames.map((name, index) => {
                     return (
-                        <Fragment>
+                        <Fragment key={index}>
                             <Grid container>
                                 <Typography variant="h5" style={styles.recipeStandard}>{name}</Typography>
-                                <Rating value={recipeReviews.ratings[rIndex][index]} readOnly/>
+                                <Rating value={ratings[index]} readOnly/>
                             </Grid>
-                            <Typography style={styles.recipeParagraph}>{recipeReviews.reviews[rIndex][index]}</Typography>
+                            <Typography
+                                style={styles.recipeParagraph}>{reviews[index]}</Typography>
                             <br/>
                         </Fragment>
                     )
