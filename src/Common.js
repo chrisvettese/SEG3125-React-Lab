@@ -45,7 +45,7 @@ export function getRatingAverage(ratings) {
     return ratingAvg;
 }
 
-function NavBar({scroll}) {
+function NavBar() {
     const history = useHistory();
     const classes = useStyles();
     const path = window.location.pathname;
@@ -64,9 +64,6 @@ function NavBar({scroll}) {
                 history.push("/home", {tab: tab});
             } else {
                 history.push("/home#" + tab, {tab: tab});
-            }
-            if (scroll !== undefined) {
-                scroll(tab);
             }
         }
         setTabValue(tab);

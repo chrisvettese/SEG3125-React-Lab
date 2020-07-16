@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect} from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom';
 import NavBar from "./Common";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import recipeData from "./resources/recipeText";
+import {useLocation} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     standardText: {
@@ -31,16 +32,26 @@ const useStyles = makeStyles(() => ({
 function App() {
     const classes = useStyles();
     const history = useHistory();
+    const location = useLocation();
 
-    let path = window.location.pathname;
-
-    function scroll(tab) {
-        console.log("SCROLL " + tab)
-    }
+    useEffect(() => {
+        if (location.hash === "") {
+            window.scroll(0, 0);
+        }
+        else if (location.hash === "#about") {
+            window.scroll(0, 100);
+        }
+        else if (location.hash === "#recipes") {
+            window.scroll(0, 200);
+        }
+        else if (location.hash === "#contact") {
+            window.scroll(0, 300);
+        }
+    });
 
     return (
         <Fragment>
-            <NavBar scroll={scroll}/>
+            <NavBar/>
             <Typography align="center" variant="h3">Bake From Home</Typography>
             <Typography align="center" className={classes.standardText}>Easy baking recipes you can make from
                 home.</Typography>
