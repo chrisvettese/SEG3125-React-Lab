@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {Route} from "react-router-dom";
 import {HashLink} from 'react-router-hash-link';
 import Typography from "@material-ui/core/Typography";
@@ -12,8 +12,9 @@ import Divider from "@material-ui/core/Divider";
 import NotFound from "./NotFound";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
-const styles = {
+const useStyles = makeStyles(() => ({
     recipeImage: {
         width: "24em",
         height: "auto"
@@ -33,9 +34,15 @@ const styles = {
         marginLeft: "10%",
         width: "30em"
     }
-};
+}));
 
 function Recipes() {
+    const classes = useStyles();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const path = window.location.pathname.substring(9);
     const rIndex = recipeData.paths.indexOf(path);
     let tmpIndex = rIndex;
@@ -100,19 +107,19 @@ function Recipes() {
             <br/>
             <Grid container justify="center">
                 <img src={recipeData.images[rIndex]} alt={recipeData.names[rIndex]}
-                     style={styles.recipeImage}/>
+                     className={classes.recipeImage}/>
             </Grid>
             <br/>
-            <Typography style={styles.recipeParagraph}>{recipeData.descriptions[rIndex]}</Typography>
+            <Typography className={classes.recipeParagraph}>{recipeData.descriptions[rIndex]}</Typography>
             <Divide/>
-            <Typography style={styles.recipeStandard} variant="h4">Ingredients</Typography>
-            <Typography style={styles.recipeParagraph}>{recipeData.ingredients[rIndex]}</Typography>
+            <Typography className={classes.recipeStandard} variant="h4">Ingredients</Typography>
+            <Typography className={classes.recipeParagraph}>{recipeData.ingredients[rIndex]}</Typography>
             <Divide/>
-            <Typography style={styles.recipeStandard} variant="h4">Instructions</Typography>
-            <Typography style={styles.recipeParagraph}>{recipeData.instructions[rIndex]}</Typography>
+            <Typography className={classes.recipeStandard} variant="h4">Instructions</Typography>
+            <Typography className={classes.recipeParagraph}>{recipeData.instructions[rIndex]}</Typography>
             <Divide/>
-            <Typography style={styles.recipeStandard} variant="h4" id="reviews">Reviews</Typography>
-            <Grid container style={styles.recipeStandard}>
+            <Typography className={classes.recipeStandard} variant="h4" id="reviews">Reviews</Typography>
+            <Grid container className={classes.recipeStandard}>
                 <Typography style={{fontSize: "1.1em"}}>{ratingAvg + "\u00a0"}</Typography>
                 <Divider orientation="vertical" flexItem/>
                 <Typography>{"\u00a0"}</Typography>
@@ -124,11 +131,11 @@ function Recipes() {
                 </Typography>
             </Grid>
             <br/>
-            <Rating name="review-rating" value={newRating} style={styles.recipeStandard}
+            <Rating name="review-rating" value={newRating} className={classes.recipeStandard}
                     onChange={(_, newValue) => setNewRating(newValue)}/>
             <br/>
             <TextField
-                style={styles.recipeStandard}
+                className={classes.recipeStandard}
                 label="Name"
                 variant="outlined"
                 value={newName}
@@ -145,13 +152,13 @@ function Recipes() {
                 label="Leave feedback (optional)"
                 multiline
                 rows={4}
-                style={styles.textField}
+                className={classes.textField}
                 variant="outlined"
                 value={newReview}
                 onChange={e => setNewReview(e.target.value)}
             />
             <br/><br/>
-            <Button style={styles.recipeStandard} variant="contained" color="primary" onClick={() => postReview()}>
+            <Button className={classes.recipeStandard} variant="contained" color="primary" onClick={() => postReview()}>
                 Post
             </Button>
             <br/>
@@ -161,11 +168,11 @@ function Recipes() {
                     return (
                         <Fragment key={index}>
                             <Grid container>
-                                <Typography variant="h5" style={styles.recipeStandard}>{name}</Typography>
+                                <Typography variant="h5" className={classes.recipeStandard}>{name}</Typography>
                                 <Rating value={ratings[index]} readOnly/>
                             </Grid>
                             <Typography
-                                style={styles.recipeParagraph}>{reviews[index]}</Typography>
+                                className={classes.recipeParagraph}>{reviews[index]}</Typography>
                             <br/>
                         </Fragment>
                     )

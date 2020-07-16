@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import NavBar, {Divide, getRatingAverage} from "./Common";
 import Typography from "@material-ui/core/Typography";
 import recipeData from "./resources/recipeText";
@@ -66,6 +66,10 @@ const useStyles = makeStyles((theme) => ({
 function Finder() {
     const classes = useStyles();
     const history = useHistory();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
 
     const initialRecipesFound = new Array(recipeData.names.length);
     for (let i = 0; i < initialRecipesFound.length; i++) {

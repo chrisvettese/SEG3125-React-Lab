@@ -51,7 +51,7 @@ function NavBar() {
     const path = window.location.pathname;
     let initialState = "home";
     if (path.includes("/recipes")) {
-        initialState = "finder";
+        initialState = "recipes";
     }
     if (history.location.state !== undefined && history.location.state.tab !== undefined) {
         initialState = history.location.state.tab;
@@ -59,7 +59,7 @@ function NavBar() {
     const [tabValue, setTabValue] = useState(initialState);
 
     function changeTab(tab) {
-        if (tab !== "finder" || tabValue !== "finder") {
+        if (tab !== "recipes" || tabValue !== "recipes") {
             history.push("/", {tab: tab});
         }
         setTabValue(tab);
@@ -71,11 +71,13 @@ function NavBar() {
                 <Tabs value={tabValue}>
                     <NavTab value="home" label="Home" onClick={() => changeTab("home")}/>
                     <NavTab value="about" label="About" onClick={() => changeTab("about")}/>
-                    <NavTab value="finder" label="Recipes" onClick={() => changeTab("finder")}/>
+                    <NavTab value="recipes" label="Recipes" onClick={() => changeTab("recipes")}/>
                     <NavTab value="contact" label="Contact Us" onClick={() => changeTab("contact")}/>
                 </Tabs>
             </AppBar>
-            <img src={logo} alt="Logo" className={classes.logo}/>
+            <a href={window.location.host} onClick={() => changeTab("home")}>
+                <img src={logo} alt="Logo" className={classes.logo}/>
+            </a>
         </Fragment>
     )
 }
