@@ -32,14 +32,15 @@ function App() {
     const classes = useStyles();
     const history = useHistory();
 
-    if (history.location.state !== undefined && history.location.state.tab !== undefined) {
-        const tab = history.location.state.tab;
-        console.log("TAB " + tab);
+    let path = window.location.pathname;
+
+    function scroll(tab) {
+        console.log("SCROLL " + tab)
     }
 
     return (
         <Fragment>
-            <NavBar/>
+            <NavBar scroll={scroll}/>
             <Typography align="center" variant="h3">Bake From Home</Typography>
             <Typography align="center" className={classes.standardText}>Easy baking recipes you can make from
                 home.</Typography>
@@ -54,7 +55,7 @@ function App() {
                 recipes by food name,
                 dietary preference, and by ingredients in your kitchen.</Typography>
             <Grid container className={classes.sideAlign}>
-                <Button variant="contained" color="primary" onClick={() => history.push('/recipes', {from: "home"})}>Go
+                <Button variant="contained" color="primary" onClick={() => history.push("/recipes")}>Go
                     to Recipe Finder</Button>
             </Grid>
         </Fragment>

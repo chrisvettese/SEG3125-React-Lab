@@ -216,7 +216,7 @@ function Finder() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button className={classes.recipeMargin} variant="contained" color="primary"
-                                            onClick={() => history.push("/recipes/" + recipeData.paths[i], {from: "recipes"})}>
+                                            onClick={() => history.push("/recipes/" + recipeData.paths[i])}>
                                         Go To Recipe
                                     </Button>
                                 </Grid>
