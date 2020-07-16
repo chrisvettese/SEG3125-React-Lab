@@ -41,7 +41,7 @@ function Recipes() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    });
+    }, []);
 
     const path = window.location.pathname.substring(9);
     const rIndex = recipeData.paths.indexOf(path);

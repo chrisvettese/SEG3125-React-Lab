@@ -69,7 +69,7 @@ function Finder() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    });
+    }, []);
 
     const initialRecipesFound = new Array(recipeData.names.length);
     for (let i = 0; i < initialRecipesFound.length; i++) {
@@ -216,7 +216,7 @@ function Finder() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button className={classes.recipeMargin} variant="contained" color="primary"
-                                            onClick={() => history.push("/recipes/" + recipeData.paths[i])}>
+                                            onClick={() => history.push("/recipes/" + recipeData.paths[i], {from: "recipes"})}>
                                         Go To Recipe
                                     </Button>
                                 </Grid>

@@ -54,8 +54,8 @@ function App() {
                 recipes by food name,
                 dietary preference, and by ingredients in your kitchen.</Typography>
             <Grid container className={classes.sideAlign}>
-                <Button variant="contained" color="primary" onClick={() => history.push('/recipes')}>Go to Recipe
-                    Finder</Button>
+                <Button variant="contained" color="primary" onClick={() => history.push('/recipes', {from: "home"})}>Go
+                    to Recipe Finder</Button>
             </Grid>
         </Fragment>
     );
