@@ -7,6 +7,7 @@ import React, {Fragment, useState} from "react";
 import {withStyles} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles(() => ({
     logo: {
@@ -61,9 +62,9 @@ function NavBar() {
     function changeTab(tab) {
         if (tab !== "recipes" || tabValue !== "recipes") {
             if (tab === "home") {
-                history.push("/home", {tab: tab});
+                history.push("/", {tab: tab});
             } else {
-                history.push("/home#" + tab, {tab: tab});
+                history.push("/#" + tab, {tab: tab});
             }
         }
         setTabValue(tab);

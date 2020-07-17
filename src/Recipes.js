@@ -1,11 +1,10 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {createRef, Fragment, useEffect, useRef, useState} from "react";
 import {Route} from "react-router-dom";
-import {HashLink} from 'react-router-hash-link';
 import Typography from "@material-ui/core/Typography";
 import Rating from '@material-ui/lab/Rating';
 import NavBar, {Divide, getRatingAverage} from "./Common";
 import Grid from "@material-ui/core/Grid";
-
+import ScrollableAnchor, {configureAnchors} from 'react-scrollable-anchor'
 import recipeData from "./resources/recipeText";
 import recipeReviews from "./resources/recipeReviews";
 import Divider from "@material-ui/core/Divider";
@@ -13,6 +12,7 @@ import NotFound from "./NotFound";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import {useLocation} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     recipeImage: {
@@ -38,10 +38,9 @@ const useStyles = makeStyles(() => ({
 
 function Recipes() {
     const classes = useStyles();
+    const location = useLocation();
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    configureAnchors({offset: -55, scrollDuration: 0});
 
     const path = window.location.pathname.substring(9);
     const rIndex = recipeData.paths.indexOf(path);
@@ -49,6 +48,12 @@ function Recipes() {
     if (rIndex === -1) {
         tmpIndex = 0;
     }
+
+    useEffect(() => {
+        if (location.hash === "") {
+            window.scroll(0, 0);
+        }
+    }, [location]);
 
     const [ratingAvg, setRatingAvg] = useState(getRatingAverage(recipeReviews.ratings[tmpIndex]));
     const [ratingAvgNum, setRatingAvgNum] = useState(parseFloat(ratingAvg));
@@ -99,10 +104,10 @@ function Recipes() {
                 <Rating value={ratingAvgNum} precision={0.1} readOnly/>
                 <Divider orientation="vertical" flexItem/>
                 <Typography>{"\u00a0"}</Typography>
-                <HashLink to={window.location.pathname + "#reviews"}>
+                <a href="#reviews">
                     <Typography
                         style={{fontSize: "1.1em"}}>{ratings.length + reviewWord}</Typography>
-                </HashLink>
+                </a>
             </Grid>
             <br/>
             <Grid container justify="center">
@@ -118,7 +123,9 @@ function Recipes() {
             <Typography className={classes.recipeStandard} variant="h4">Instructions</Typography>
             <Typography className={classes.recipeParagraph}>{recipeData.instructions[rIndex]}</Typography>
             <Divide/>
-            <Typography className={classes.recipeStandard} variant="h4" id="reviews">Reviews</Typography>
+            <ScrollableAnchor id={"reviews"}>
+                <Typography className={classes.recipeStandard} variant="h4" id="reviews">Reviews</Typography>
+            </ScrollableAnchor>
             <Grid container className={classes.recipeStandard}>
                 <Typography style={{fontSize: "1.1em"}}>{ratingAvg + "\u00a0"}</Typography>
                 <Divider orientation="vertical" flexItem/>

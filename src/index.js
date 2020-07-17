@@ -17,9 +17,6 @@ ReactDOM.render(
             <Route exact path="/">
                 <App/>
             </Route>
-            <Route exact path="/home">
-                <App/>
-            </Route>
             <Route exact path="/recipes">
                 <Finder/>
             </Route>
