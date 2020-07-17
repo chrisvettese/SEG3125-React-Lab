@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6c361c6e542709f35e11efc1390c4b53",
+    "revision": "9ea8ae16a95521536032f013e4753a26",
     "url": "/seg3125-react-lab/index.html"
   },
   {
-    "revision": "44104144b0ba719702d0",
+    "revision": "48d80f9e7937c816a63d",
     "url": "/seg3125-react-lab/static/css/main.685dea8f.chunk.css"
   },
   {
-    "revision": "7aecb983c48b2d62612c",
-    "url": "/seg3125-react-lab/static/js/2.30531f5c.chunk.js"
+    "revision": "d00c1f0dac3270a79adf",
+    "url": "/seg3125-react-lab/static/js/2.25556a69.chunk.js"
   },
   {
     "revision": "6a2bc4dfc852217704ff5945e37d112d",
-    "url": "/seg3125-react-lab/static/js/2.30531f5c.chunk.js.LICENSE.txt"
+    "url": "/seg3125-react-lab/static/js/2.25556a69.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "44104144b0ba719702d0",
-    "url": "/seg3125-react-lab/static/js/main.9aa75817.chunk.js"
+    "revision": "48d80f9e7937c816a63d",
+    "url": "/seg3125-react-lab/static/js/main.1b550121.chunk.js"
   },
   {
     "revision": "275ba226622359e4527a",
@@ -41,7 +41,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   },
   {
     "revision": "182afd5c67c87ba2ba97a203f5d8c059",
-    "url": "/seg3125-react-lab/static/media/logo.182afd5c.png"
+    "url": "/seg3125-react-lab/static/media/logo_en.182afd5c.png"
   },
   {
     "revision": "c05089c09c727bd56c74c42b9040ad0e",
