@@ -7,7 +7,6 @@ import NavBar from "./Common";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import recipeData from "./resources/recipeText";
 import {useLocation} from "react-router-dom";
-import ScrollableAnchor, {configureAnchors} from "react-scrollable-anchor";
 
 const useStyles = makeStyles(() => ({
     standardText: {
@@ -39,33 +38,19 @@ function App() {
     const recipeRef = useRef(null);
     const contactRef = useRef(null);
 
-
-    configureAnchors({offset: -55, scrollDuration: 0});
-
     useEffect(() => {
-        if (location.hash === "") {
-            console.log("NONE");
-            window.scroll(0, 0);
-        }
-        else if (location.hash === "#about") {
-            const scrollAmount = aboutRef.current.getBoundingClientRect().top - 55;
-            if (scrollAmount > 0) {
-                window.scroll(0, scrollAmount);
+        setTimeout(() => {
+            if (location.hash === "") {
+                window.scroll(0, 0);
+            } else if (location.hash === "#about") {
+                window.scroll(0, contactRef.current.getBoundingClientRect().top - 55);
+            } else if (location.hash === "#recipes") {
+                window.scroll(0, contactRef.current.getBoundingClientRect().top - 55);
+            } else if (location.hash === "#contact") {
+                window.scroll(0, contactRef.current.getBoundingClientRect().top - 55);
             }
-        }
-        else if (location.hash === "#recipes") {
-            const scrollAmount = recipeRef.current.getBoundingClientRect().top - 55;
-            if (scrollAmount > 0) {
-                window.scroll(0, scrollAmount);
-            }
-        }
-        else if (location.hash === "#contact") {
-            const scrollAmount = contactRef.current.getBoundingClientRect().top - 55;
-            if (scrollAmount > 0) {
-                window.scroll(0, scrollAmount);
-            }
-        }
-    });
+        }, 50);
+    }, [location]);
 
     return (
         <Fragment>
@@ -80,14 +65,10 @@ function App() {
             </Grid>
             <br/>
             <div ref={aboutRef}/>
-            <ScrollableAnchor id={"about"}>
-                <Typography className={classes.sideAlign} variant="h4">About</Typography>
-            </ScrollableAnchor>
+            <Typography className={classes.sideAlign} variant="h4">About</Typography>
             <br/>
             <div ref={recipeRef}/>
-            <ScrollableAnchor id={"recipes"}>
-                <Typography className={classes.sideAlign} variant="h4">Recipes</Typography>
-            </ScrollableAnchor>
+            <Typography className={classes.sideAlign} variant="h4">Recipes</Typography>
             <Typography className={classes.sideAlignText}>Find a baking recipe that's perfect for you! Search for
                 recipes by food name,
                 dietary preference, and by ingredients in your kitchen.</Typography>
@@ -97,9 +78,7 @@ function App() {
             </Grid>
             <br/>
             <div ref={contactRef}/>
-            <ScrollableAnchor id={"contact"}>
-                <Typography className={classes.sideAlign} variant="h4">Contact Us</Typography>
-            </ScrollableAnchor>
+            <Typography className={classes.sideAlign} variant="h4">Contact Us</Typography>
         </Fragment>
     );
 }
