@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import Typography from "@material-ui/core/Typography";
 import NavBar from "./Common";
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -16,12 +16,15 @@ function NotFound() {
     const classes = useStyles();
     const history = useHistory();
 
+    const [lang, setLang] = useState(0);
+
     return (
         <Fragment>
-            <NavBar/>
+            <NavBar lang={lang} setLang={setLang}/>
             <Typography className={classes.standard} variant="h3">Page not found!</Typography>
             <br/>
-            <Button className={classes.standard} variant="contained" color="primary" onClick={() => history.push("/")}>Return Home</Button>
+            <Button className={classes.standard} variant="contained" color="primary"
+                    onClick={() => history.push("/", {lang: lang})}>Return Home</Button>
         </Fragment>
     )
 }

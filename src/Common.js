@@ -2,17 +2,29 @@ import {useHistory} from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import logo from "./resources/logo.png";
+import logo from "./resources/logo_en.png";
 import React, {Fragment, useState} from "react";
 import {withStyles} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Radio from "@material-ui/core/Radio";
+import Toolbar from "@material-ui/core/Toolbar";
 
 const topStyles = makeStyles(() => ({
     logo: {
         width: "20em",
         height: "auto"
+    },
+    alignRight: {
+        right: "0",
+        position: "absolute",
+        marginRight: "2em"
+    },
+    toolBar: {
+        padding: "0"
     }
 }));
 
@@ -61,7 +73,7 @@ export function getRatingAverage(ratings) {
     return ratingAvg;
 }
 
-function NavBar() {
+function NavBar({lang, setLang}) {
     const history = useHistory();
     const classes = topStyles();
     const path = window.location.pathname;
@@ -77,9 +89,9 @@ function NavBar() {
     function changeTab(tab) {
         if (tab !== "recipes" || tabValue !== "recipes") {
             if (tab === "home") {
-                history.push("/", {tab: tab});
+                history.push("/", {tab: tab, lang: lang});
             } else {
-                history.push("/#" + tab, {tab: tab});
+                history.push("/#" + tab, {tab: tab, lang: lang});
             }
         }
         setTabValue(tab);
@@ -88,12 +100,20 @@ function NavBar() {
     return (
         <Fragment>
             <AppBar position="sticky">
-                <Tabs value={tabValue}>
-                    <NavTab value="home" label="Home" onClick={() => changeTab("home")}/>
-                    <NavTab value="about" label="About" onClick={() => changeTab("about")}/>
-                    <NavTab value="recipes" label="Recipes" onClick={() => changeTab("recipes")}/>
-                    <NavTab value="contact" label="Contact Us" onClick={() => changeTab("contact")}/>
-                </Tabs>
+                <Toolbar className={classes.toolBar} variant="dense">
+                    <Tabs value={tabValue}>
+                        <NavTab value="home" label="Home" onClick={() => changeTab("home")}/>
+                        <NavTab value="about" label="About" onClick={() => changeTab("about")}/>
+                        <NavTab value="recipes" label="Recipes" onClick={() => changeTab("recipes")}/>
+                        <NavTab value="contact" label="Contact Us" onClick={() => changeTab("contact")}/>
+                    </Tabs>
+                    <RadioGroup className={classes.alignRight}
+                                aria-label="gender" row name="language" value={lang === 0 ? "english" : "french"}
+                                onChange={(event) => setLang(event.target.value === "english" ? 0 : 1)}>
+                        <FormControlLabel value="english" control={<Radio/>} label="English"/>
+                        <FormControlLabel value="french" control={<Radio/>} label="Français"/>
+                    </RadioGroup>
+                </Toolbar>
             </AppBar>
             <a href={window.location.host} onClick={() => changeTab("home")}>
                 <img src={logo} alt="Logo" className={classes.logo}/>
@@ -106,11 +126,9 @@ export function Footer() {
     const classes = bottomStyles();
 
     return (
-        <Fragment>
-            <AppBar position="static" className={classes.appBar}>
-                <Typography align="center">Website by Chris Vettese</Typography>
-            </AppBar>
-        </Fragment>
+        <AppBar position="static" className={classes.appBar}>
+            <Typography align="center">Website by Chris Vettese</Typography>
+        </AppBar>
     )
 }
 

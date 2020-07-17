@@ -13,6 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {useLocation} from "react-router-dom";
+import {useHistory} from "react-router";
 
 const useStyles = makeStyles(() => ({
     recipeImage: {
@@ -39,12 +40,19 @@ const useStyles = makeStyles(() => ({
         maxWidth: "70%",
         fontWeight: "bold",
         fontSize: "1.3em"
+    },
+    bold: {
+        fontWeight: "bold"
+    },
+    standardFont: {
+        fontSize: "1.1em"
     }
 }));
 
 function Recipes() {
     const classes = useStyles();
     const location = useLocation();
+    const history = useHistory();
 
     configureAnchors({offset: -55, scrollDuration: 0});
 
@@ -72,6 +80,12 @@ function Recipes() {
     const [newReview, setNewReview] = useState("");
     const [newRating, setNewRating] = useState(0);
     const [showNameError, setShowNameError] = useState(false);
+
+    let initialLang = 0;
+    if (history.location.state !== undefined && history.location.state.lang !== undefined) {
+        initialLang = history.location.state.lang;
+    }
+    const [lang, setLang] = useState(initialLang);
 
     if (rIndex === -1) {
         return (
@@ -104,21 +118,20 @@ function Recipes() {
 
     return (
         <Route path={"/recipes/" + path} key={path}>
-            <NavBar/>
-            <Typography align="center" variant="h3" style={{fontWeight: "bold"}}>{recipeData.names[rIndex] + "\u00a0"}</Typography>
+            <NavBar lang={lang} setLang={setLang}/>
+            <Typography align="center" variant="h3"
+                        className={classes.bold}>{recipeData.names[rIndex] + "\u00a0"}</Typography>
             <Grid container justify="center">
                 <Rating value={ratingAvgNum} precision={0.1} readOnly/>
                 <Divider orientation="vertical" flexItem/>
                 <Typography>{"\u00a0"}</Typography>
                 <a href="#reviews">
-                    <Typography
-                        style={{fontSize: "1.1em"}}>{ratings.length + reviewWord}</Typography>
+                    <Typography className={classes.standardFont}>{ratings.length + reviewWord}</Typography>
                 </a>
             </Grid>
             <br/>
             <Grid container justify="center">
-                <img src={recipeData.images[rIndex]} alt={recipeData.names[rIndex]}
-                     className={classes.recipeImage}/>
+                <img src={recipeData.images[rIndex]} alt={recipeData.names[rIndex]} className={classes.recipeImage}/>
             </Grid>
             <br/>
             <Typography className={classes.recipeParagraph}>{recipeData.descriptions[rIndex]}</Typography>
@@ -133,15 +146,13 @@ function Recipes() {
                 <Typography className={classes.recipeStandard} variant="h4" id="reviews">Reviews</Typography>
             </ScrollableAnchor>
             <Grid container className={classes.recipeStandard}>
-                <Typography style={{fontSize: "1.1em"}}>{ratingAvg + "\u00a0"}</Typography>
+                <Typography className={classes.standardFont}>{ratingAvg + "\u00a0"}</Typography>
                 <Divider orientation="vertical" flexItem/>
                 <Typography>{"\u00a0"}</Typography>
                 <Rating value={ratingAvgNum} precision={0.1} readOnly/>
                 <Typography>{"\u00a0"}</Typography>
                 <Divider orientation="vertical" flexItem/>
-                <Typography
-                    style={{fontSize: "1.1em"}}>{"\u00a0" + ratings.length + reviewWord}
-                </Typography>
+                <Typography className={classes.standardFont}>{"\u00a0" + ratings.length + reviewWord}</Typography>
             </Grid>
             <br/>
             <Rating name="review-rating" value={newRating} className={classes.recipeStandard}

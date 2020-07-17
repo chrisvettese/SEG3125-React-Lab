@@ -60,12 +60,21 @@ const useStyles = makeStyles((theme) => ({
     divideColour: {
         backgroundColor: "#F50057",
         height: "0.15em"
+    },
+    bold: {
+        fontWeight: "bold"
     }
 }));
 
 function Finder() {
     const classes = useStyles();
     const history = useHistory();
+
+    let initialLang = 0;
+    if (history.location.state !== undefined && history.location.state.lang !== undefined) {
+        initialLang = history.location.state.lang;
+    }
+    const [lang, setLang] = useState(initialLang);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -75,6 +84,7 @@ function Finder() {
     for (let i = 0; i < initialRecipesFound.length; i++) {
         initialRecipesFound[i] = i;
     }
+
     const [recipesFound, setRecipesFound] = useState(initialRecipesFound);
     const [recipeText, setRecipeText] = useState(" Recipes Found");
     const [preferences, setPreferences] = useState([false, false]);
@@ -141,8 +151,8 @@ function Finder() {
 
     return (
         <Fragment>
-            <NavBar/>
-            <Typography align="center" variant="h3" style={{fontWeight: "bold"}}>Search For Recipes</Typography>
+            <NavBar lang={lang} setLang={setLang}/>
+            <Typography align="center" variant="h3" className={classes.bold}>Search For Recipes</Typography>
             <Typography className={classes.recipeMargin} variant="h4">Filter by...</Typography>
             <Grid container justify="space-between" alignItems="stretch" className={classes.recipeMargin}>
                 <Grid item>
@@ -196,7 +206,8 @@ function Finder() {
                             <Grid container alignItems="flex-start">
                                 <Grid container item xs={6} className={classes.recipeMargin}>
                                     <Grid container item>
-                                        <Typography className={classes.minorTitle} variant={"h5"}>{recipeData.names[i] + "\u00a0"}</Typography>
+                                        <Typography className={classes.minorTitle}
+                                                    variant={"h5"}>{recipeData.names[i] + "\u00a0"}</Typography>
                                         <Icons rIndex={i}/>
                                     </Grid>
                                     <Grid container item>
@@ -217,7 +228,7 @@ function Finder() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Button className={classes.recipeMargin} variant="contained" color="primary"
-                                            onClick={() => history.push("/recipes/" + recipeData.paths[i])}>
+                                            onClick={() => history.push("/recipes/" + recipeData.paths[i], {lang: lang})}>
                                         Go To Recipe
                                     </Button>
                                 </Grid>
