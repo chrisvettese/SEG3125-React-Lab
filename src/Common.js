@@ -7,12 +7,26 @@ import React, {Fragment, useState} from "react";
 import {withStyles} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import Link from "@material-ui/core/Link";
+import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles(() => ({
+const topStyles = makeStyles(() => ({
     logo: {
         width: "20em",
         height: "auto"
+    }
+}));
+
+const bottomStyles = makeStyles(() => ({
+    appBar: {
+        bottom: "0",
+        top: "auto"
+    }
+}));
+
+export const divideStyle = makeStyles(() => ({
+    divideColour: {
+        backgroundColor: "#F50057",
+        height: "0.15em"
     }
 }));
 
@@ -27,10 +41,11 @@ const NavTab = withStyles({
 })(Tab);
 
 export function Divide() {
+    const classes = divideStyle();
     return (
         <Fragment>
             <br/>
-            <Divider/>
+            <Divider className={classes.divideColour}/>
             <br/>
         </Fragment>
     );
@@ -48,7 +63,7 @@ export function getRatingAverage(ratings) {
 
 function NavBar() {
     const history = useHistory();
-    const classes = useStyles();
+    const classes = topStyles();
     const path = window.location.pathname;
     let initialState = "home";
     if (path.includes("/recipes")) {
@@ -83,6 +98,18 @@ function NavBar() {
             <a href={window.location.host} onClick={() => changeTab("home")}>
                 <img src={logo} alt="Logo" className={classes.logo}/>
             </a>
+        </Fragment>
+    )
+}
+
+export function Footer() {
+    const classes = bottomStyles();
+
+    return (
+        <Fragment>
+            <AppBar position="static" className={classes.appBar}>
+                <Typography align="center">Website by Chris Vettese</Typography>
+            </AppBar>
         </Fragment>
     )
 }

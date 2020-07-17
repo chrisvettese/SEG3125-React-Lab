@@ -1,8 +1,8 @@
-import React, {createRef, Fragment, useEffect, useRef, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 import {Route} from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import Rating from '@material-ui/lab/Rating';
-import NavBar, {Divide, getRatingAverage} from "./Common";
+import NavBar, {Divide, Footer, getRatingAverage} from "./Common";
 import Grid from "@material-ui/core/Grid";
 import ScrollableAnchor, {configureAnchors} from 'react-scrollable-anchor'
 import recipeData from "./resources/recipeText";
@@ -33,6 +33,12 @@ const useStyles = makeStyles(() => ({
         marginTop: "1em",
         marginLeft: "10%",
         width: "30em"
+    },
+    reviewerName: {
+        marginLeft: "10%",
+        maxWidth: "70%",
+        fontWeight: "bold",
+        fontSize: "1.3em"
     }
 }));
 
@@ -99,7 +105,7 @@ function Recipes() {
     return (
         <Route path={"/recipes/" + path} key={path}>
             <NavBar/>
-            <Typography align="center" variant="h3">{recipeData.names[rIndex] + "\u00a0"}</Typography>
+            <Typography align="center" variant="h3" style={{fontWeight: "bold"}}>{recipeData.names[rIndex] + "\u00a0"}</Typography>
             <Grid container justify="center">
                 <Rating value={ratingAvgNum} precision={0.1} readOnly/>
                 <Divider orientation="vertical" flexItem/>
@@ -146,6 +152,7 @@ function Recipes() {
                 label="Name"
                 variant="outlined"
                 value={newName}
+                color="secondary"
                 onChange={e => {
                     setNewName(e.target.value);
                     setShowNameError(false);
@@ -158,6 +165,7 @@ function Recipes() {
                 id="outlined-multiline-static"
                 label="Leave feedback (optional)"
                 multiline
+                color="secondary"
                 rows={4}
                 className={classes.textField}
                 variant="outlined"
@@ -175,7 +183,7 @@ function Recipes() {
                     return (
                         <Fragment key={index}>
                             <Grid container>
-                                <Typography variant="h5" className={classes.recipeStandard}>{name}</Typography>
+                                <Typography className={classes.reviewerName}>{name}</Typography>
                                 <Rating value={ratings[index]} readOnly/>
                             </Grid>
                             <Typography
@@ -185,6 +193,8 @@ function Recipes() {
                     )
                 })
             }
+            <br/>
+            <Footer/>
         </Route>
     )
 }

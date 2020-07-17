@@ -17,6 +17,9 @@ ReactDOM.render(
             <Route exact path="/">
                 <App/>
             </Route>
+            <Route exact path="/seg3125-react-lab">
+                <App/>
+            </Route>
             <Route exact path="/recipes">
                 <Finder/>
             </Route>

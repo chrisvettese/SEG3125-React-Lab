@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from "react";
-import NavBar, {Divide, getRatingAverage} from "./Common";
+import NavBar, {Divide, Footer, getRatingAverage} from "./Common";
 import Typography from "@material-ui/core/Typography";
 import recipeData from "./resources/recipeText";
 import Vegan from "./resources/vegan.png"
@@ -50,16 +50,16 @@ const useStyles = makeStyles((theme) => ({
         height: "auto",
         paddingLeft: "5em"
     },
-    recipeFound: {
-        fontWeight: "bold",
-        marginLeft: "10%",
-        maxWidth: "70%"
-    },
-    boldFont: {
-        fontWeight: "bold"
-    },
     standardFont: {
         fontSize: "1.1em"
+    },
+    minorTitle: {
+        fontWeight: "bold",
+        fontSize: "1.3em"
+    },
+    divideColour: {
+        backgroundColor: "#F50057",
+        height: "0.15em"
     }
 }));
 
@@ -142,29 +142,30 @@ function Finder() {
     return (
         <Fragment>
             <NavBar/>
-            <Typography align="center" variant="h3" className={classes.boldFont}>Search For Recipes</Typography>
+            <Typography align="center" variant="h3" style={{fontWeight: "bold"}}>Search For Recipes</Typography>
             <Typography className={classes.recipeMargin} variant="h4">Filter by...</Typography>
             <Grid container justify="space-between" alignItems="stretch" className={classes.recipeMargin}>
                 <Grid item>
-                    <Typography>Recipe title:</Typography>
-                    <TextField id="outlined-basic" label="Title" variant="outlined"
+                    <Typography className={classes.minorTitle}>Recipe title:</Typography>
+                    <TextField id="outlined-basic" label="Title" variant="outlined" color="secondary"
                                onChange={searchRecipes}/>
                 </Grid>
                 <Grid item>
-                    <Typography>Dietary preferences:</Typography>
-                    <FormControlLabel value="vegan" control={<Checkbox onChange={() => updatePreference("vegan")}/>}
-                                      label="Vegan"/>
+                    <Typography className={classes.minorTitle}>Dietary preferences:</Typography>
+                    <FormControlLabel value="vegan" className={classes.standardFont}
+                                      control={<Checkbox onChange={() => updatePreference("vegan")}/>} label="Vegan"/>
                     <br/>
-                    <FormControlLabel value="glutenFree"
+                    <FormControlLabel value="glutenFree" className={classes.standardFont}
                                       control={<Checkbox onChange={() => updatePreference("glutenFree")}/>}
                                       label="Gluten-free"/>
                 </Grid>
                 <Grid item>
-                    <Typography>Type of recipe:</Typography>
+                    <Typography className={classes.minorTitle}>Type of recipe:</Typography>
                     <FormControl className={classes.formControl}>
                         <Select
                             value={recipeType}
                             onChange={updateType}
+                            color="secondary"
                             displayEmpty
                             className={classes.selectEmpty}
                             inputProps={{'aria-label': 'Recipe Type'}}
@@ -180,8 +181,8 @@ function Finder() {
                 </Grid>
             </Grid>
             <br/>
-            <Typography className={classes.recipeFound} variant="h4">{recipesFound.length + recipeText}</Typography>
-            <Divider/>
+            <Typography className={classes.recipeMargin} variant="h4">{recipesFound.length + recipeText}</Typography>
+            <Divider className={classes.divideColour}/>
             <br/>
             {
                 recipesFound.map(i => {
@@ -195,7 +196,7 @@ function Finder() {
                             <Grid container alignItems="flex-start">
                                 <Grid container item xs={6} className={classes.recipeMargin}>
                                     <Grid container item>
-                                        <Typography variant={"h5"}>{recipeData.names[i] + "\u00a0"}</Typography>
+                                        <Typography className={classes.minorTitle} variant={"h5"}>{recipeData.names[i] + "\u00a0"}</Typography>
                                         <Icons rIndex={i}/>
                                     </Grid>
                                     <Grid container item>
@@ -227,6 +228,7 @@ function Finder() {
                     )
                 })
             }
+            <Footer/>
         </Fragment>
     );
 }

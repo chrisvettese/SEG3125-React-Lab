@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import {useHistory} from 'react-router-dom';
-import NavBar from "./Common";
+import NavBar, {Footer} from "./Common";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import recipeData from "./resources/recipeText";
 import {useLocation} from "react-router-dom";
@@ -55,7 +55,7 @@ function App() {
     return (
         <Fragment>
             <NavBar/>
-            <Typography align="center" variant="h3">Bake From Home</Typography>
+            <Typography align="center" variant="h3" style={{fontWeight: "bold"}}>Bake From Home</Typography>
             <Typography align="center" className={classes.standardText}>Easy baking recipes you can make from
                 home.</Typography>
             <Grid container justify="center">
@@ -70,8 +70,7 @@ function App() {
             <div ref={recipeRef}/>
             <Typography className={classes.sideAlign} variant="h4">Recipes</Typography>
             <Typography className={classes.sideAlignText}>Find a baking recipe that's perfect for you! Search for
-                recipes by food name,
-                dietary preference, and by ingredients in your kitchen.</Typography>
+                recipes by food name, dietary preference, and by ingredients in your kitchen.</Typography>
             <Grid container className={classes.sideAlign}>
                 <Button variant="contained" color="primary" onClick={() => history.push("/recipes")}>Go
                     to Recipe Finder</Button>
@@ -79,6 +78,10 @@ function App() {
             <br/>
             <div ref={contactRef}/>
             <Typography className={classes.sideAlign} variant="h4">Contact Us</Typography>
+            <Typography className={classes.sideAlignText}>Have any questions or suggestions? Reach us at
+                help@bakefromhome.com, or 555-555-5555.</Typography>
+            <br/>
+            <Footer/>
         </Fragment>
     );
 }
