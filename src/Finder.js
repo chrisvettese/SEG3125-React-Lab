@@ -107,10 +107,10 @@ function Finder() {
 
     function Icons({rIndex}) {
         if (recipeData.vegan[rIndex]) {
-            return <img src={Vegan} className={classes.dietIcon} title="Vegan" alt="Vegan"/>
+            return <img src={Vegan} className={classes.dietIcon} title={vegan[lang]} alt="Vegan"/>
         }
         if (recipeData.glutenFree[rIndex]) {
-            return <img src={GlutenFree} className={classes.dietIcon} title="Gluten Free" alt="Gluten Free"/>
+            return <img src={GlutenFree} className={classes.dietIcon} title={glutenFree[lang]} alt="Gluten Free"/>
         }
         return <Fragment/>
     }
