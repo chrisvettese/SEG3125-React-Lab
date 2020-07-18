@@ -1,27 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9ea8ae16a95521536032f013e4753a26",
+    "revision": "d8c6ca0dd3b75539739b9c7287df4255",
     "url": "/seg3125-react-lab/index.html"
   },
   {
-    "revision": "48d80f9e7937c816a63d",
+    "revision": "d0ec76a7208f7c4bbdbc",
     "url": "/seg3125-react-lab/static/css/main.685dea8f.chunk.css"
   },
   {
-    "revision": "d00c1f0dac3270a79adf",
-    "url": "/seg3125-react-lab/static/js/2.25556a69.chunk.js"
+    "revision": "c05a1af6a0f760f31084",
+    "url": "/seg3125-react-lab/static/js/2.dbd540f8.chunk.js"
   },
   {
     "revision": "6a2bc4dfc852217704ff5945e37d112d",
-    "url": "/seg3125-react-lab/static/js/2.25556a69.chunk.js.LICENSE.txt"
+    "url": "/seg3125-react-lab/static/js/2.dbd540f8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "48d80f9e7937c816a63d",
-    "url": "/seg3125-react-lab/static/js/main.1b550121.chunk.js"
+    "revision": "d0ec76a7208f7c4bbdbc",
+    "url": "/seg3125-react-lab/static/js/main.7e6847b3.chunk.js"
   },
   {
     "revision": "275ba226622359e4527a",
     "url": "/seg3125-react-lab/static/js/runtime-main.eb27dfb5.js"
+  },
+  {
+    "revision": "4bed3ba397c21e524085302ca61ccf28",
+    "url": "/seg3125-react-lab/static/media/bagels.4bed3ba3.jpg"
+  },
+  {
+    "revision": "59bc8aaba227d0055e74ea0f8bcee0af",
+    "url": "/seg3125-react-lab/static/media/cake.59bc8aab.jpg"
   },
   {
     "revision": "2b615e27bc9f878e36f4be9f3ca47cc0",
@@ -38,6 +46,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "5ff1f8209d1213dad0050530f7214fe7",
     "url": "/seg3125-react-lab/static/media/glutenFree.5ff1f820.png"
+  },
+  {
+    "revision": "6accc9aa6985e81b3ed9a77a86f9f885",
+    "url": "/seg3125-react-lab/static/media/instructions.6accc9aa.png"
+  },
+  {
+    "revision": "d8533bde82a89fa5e51c7323a6f9dc64",
+    "url": "/seg3125-react-lab/static/media/landscapeCookies.d8533bde.jpg"
   },
   {
     "revision": "182afd5c67c87ba2ba97a203f5d8c059",
