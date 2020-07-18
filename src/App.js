@@ -105,6 +105,7 @@ function App() {
             <div ref={aboutRef}/>
             <Typography className={classes.sideAlign} variant="h4">{about[lang]}</Typography>
             <Typography className={classes.sideAlignText}>{aboutText[lang]}</Typography>
+            <br/>
             <Grid container justify="center">
                 <img src={Cake} alt="Cake" className={classes.bigImage}/>
                 <img src={Bagels} alt="Bagels" className={classes.bigImage}/>
