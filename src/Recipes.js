@@ -61,7 +61,9 @@ function Recipes() {
     const location = useLocation();
     const history = useHistory();
 
-    const reviewPosted = ["Review Submitted.", "Examen soumis."]
+    const reviewPosted = ["Review Submitted.", "Examen soumis."];
+    const ingredients = ["Ingredients", "Ingrédients"];
+
 
     configureAnchors({offset: -55, scrollDuration: 0});
 
@@ -170,8 +172,8 @@ function Recipes() {
             <Typography className={classes.recipeParagraph}>{recipeData.descriptions[rIndex]}</Typography>
             <Divide/>
             <Grid container>
-                <Typography className={classes.recipeStandard} variant="h4">Ingredients</Typography>
-                <img src={IngredientsIcon} alt={"Ingredients Icon"} className={classes.titleIcon} title="Ingredients"/>
+                <Typography className={classes.recipeStandard} variant="h4">{ingredients[lang]}</Typography>
+                <img src={IngredientsIcon} alt={"Ingredients Icon"} className={classes.titleIcon} title={ingredients[lang]}/>
             </Grid>
             <Typography className={classes.recipeParagraph}>{recipeData.ingredients[rIndex]}</Typography>
             <Divide/>
