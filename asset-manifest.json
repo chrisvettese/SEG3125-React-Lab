@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/seg3125-react-lab/static/css/main.685dea8f.chunk.css",
-    "main.js": "/seg3125-react-lab/static/js/main.0da19666.chunk.js",
-    "main.js.map": "/seg3125-react-lab/static/js/main.0da19666.chunk.js.map",
+    "main.js": "/seg3125-react-lab/static/js/main.aec2e13e.chunk.js",
+    "main.js.map": "/seg3125-react-lab/static/js/main.aec2e13e.chunk.js.map",
     "runtime-main.js": "/seg3125-react-lab/static/js/runtime-main.eb27dfb5.js",
     "runtime-main.js.map": "/seg3125-react-lab/static/js/runtime-main.eb27dfb5.js.map",
     "static/js/2.558158c2.chunk.js": "/seg3125-react-lab/static/js/2.558158c2.chunk.js",
     "static/js/2.558158c2.chunk.js.map": "/seg3125-react-lab/static/js/2.558158c2.chunk.js.map",
     "index.html": "/seg3125-react-lab/index.html",
-    "precache-manifest.0e3cedcaa5c9ab52d24e2a813c391219.js": "/seg3125-react-lab/precache-manifest.0e3cedcaa5c9ab52d24e2a813c391219.js",
+    "precache-manifest.d415c88a6b0f6e27613b767abd4c4a5c.js": "/seg3125-react-lab/precache-manifest.d415c88a6b0f6e27613b767abd4c4a5c.js",
     "service-worker.js": "/seg3125-react-lab/service-worker.js",
     "static/css/main.685dea8f.chunk.css.map": "/seg3125-react-lab/static/css/main.685dea8f.chunk.css.map",
     "static/js/2.558158c2.chunk.js.LICENSE.txt": "/seg3125-react-lab/static/js/2.558158c2.chunk.js.LICENSE.txt",
@@ -30,6 +30,6 @@
     "static/js/runtime-main.eb27dfb5.js",
     "static/js/2.558158c2.chunk.js",
     "static/css/main.685dea8f.chunk.css",
-    "static/js/main.0da19666.chunk.js"
+    "static/js/main.aec2e13e.chunk.js"
   ]
 }
