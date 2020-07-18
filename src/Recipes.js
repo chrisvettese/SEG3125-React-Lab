@@ -151,7 +151,7 @@ function Recipes() {
                 message={reviewPosted[lang]}
             >
                 <SnackbarContent style={{
-                    backgroundColor: "#F50057",
+                    backgroundColor: "#5465BF",
                 }} message={reviewPosted[lang]}/>
             </Snackbar>
             <Typography align="center" variant="h3"
