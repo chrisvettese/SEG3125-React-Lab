@@ -76,6 +76,21 @@ function Finder() {
     }
     const [lang, setLang] = useState(initialLang);
 
+    const searchForRecipes = ["Search For Recipes", "Rechercher des Recettes"];
+    const filterBy = ["Filter by...", "Filtrer par..."];
+    const recipeTitle = ["Recipe Title", "Titre de la Recette"];
+    const title = ["Title", "Titre"];
+    const dietary = ["Dietary preferences:", "Les préférences alimentaires:"];
+    const vegan = ["Vegan", "Végétalien"];
+    const glutenFree = ["Gluten-free", "Sans gluten"];
+    const typeOfRecipe = ["Type of recipe:", "Type de recette:"];
+    const any = ["Any", "Tout"];
+    const cookies = ["Cookies", "Biscuits"];
+    const pastries = ["Pastries", "Des Pâtisseries"];
+    const bread = ["Bread", "Pain"];
+    const recipesFoundTxt = [" Recipes Found", " Recipe Found", " Recettes Trouvées", " Recette Trouvée"];
+    const goToRecipe = ["Go To Recipe", "Aller à la Recette"]
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -86,7 +101,6 @@ function Finder() {
     }
 
     const [recipesFound, setRecipesFound] = useState(initialRecipesFound);
-    const [recipeText, setRecipeText] = useState(" Recipes Found");
     const [preferences, setPreferences] = useState([false, false]);
     const [searchStr, setSearchStr] = useState("");
     const [recipeType, setRecipeType] = useState('');
@@ -142,35 +156,31 @@ function Finder() {
             newRecipes.push(i);
         }
         setRecipesFound(newRecipes);
-        if (newRecipes.length === 1) {
-            setRecipeText(" Recipe Found");
-        } else {
-            setRecipeText(" Recipes Found");
-        }
     }
 
     return (
         <Fragment>
             <NavBar lang={lang} setLang={setLang}/>
-            <Typography align="center" variant="h3" className={classes.bold}>Search For Recipes</Typography>
-            <Typography className={classes.recipeMargin} variant="h4">Filter by...</Typography>
+            <Typography align="center" variant="h3" className={classes.bold}>{searchForRecipes[lang]}</Typography>
+            <Typography className={classes.recipeMargin} variant="h4">{filterBy[lang]}</Typography>
             <Grid container justify="space-between" alignItems="stretch" className={classes.recipeMargin}>
                 <Grid item>
-                    <Typography className={classes.minorTitle}>Recipe title:</Typography>
-                    <TextField id="outlined-basic" label="Title" variant="outlined" color="secondary"
+                    <Typography className={classes.minorTitle}>{recipeTitle[lang]}</Typography>
+                    <TextField id="outlined-basic" label={title[lang]} variant="outlined" color="secondary"
                                onChange={searchRecipes}/>
                 </Grid>
                 <Grid item>
-                    <Typography className={classes.minorTitle}>Dietary preferences:</Typography>
+                    <Typography className={classes.minorTitle}>{dietary[lang]}</Typography>
                     <FormControlLabel value="vegan" className={classes.standardFont}
-                                      control={<Checkbox onChange={() => updatePreference("vegan")}/>} label="Vegan"/>
+                                      control={<Checkbox onChange={() => updatePreference("vegan")}/>}
+                                      label={vegan[lang]}/>
                     <br/>
                     <FormControlLabel value="glutenFree" className={classes.standardFont}
                                       control={<Checkbox onChange={() => updatePreference("glutenFree")}/>}
-                                      label="Gluten-free"/>
+                                      label={glutenFree[lang]}/>
                 </Grid>
                 <Grid item>
-                    <Typography className={classes.minorTitle}>Type of recipe:</Typography>
+                    <Typography className={classes.minorTitle}>{typeOfRecipe[lang]}</Typography>
                     <FormControl className={classes.formControl}>
                         <Select
                             value={recipeType}
@@ -181,17 +191,19 @@ function Finder() {
                             inputProps={{'aria-label': 'Recipe Type'}}
                         >
                             <MenuItem value="">
-                                <em>Any</em>
+                                <em>{any[lang]}</em>
                             </MenuItem>
-                            <MenuItem value="cookies">Cookies</MenuItem>
-                            <MenuItem value="pastries">Pastries</MenuItem>
-                            <MenuItem value="bread">Bread</MenuItem>
+                            <MenuItem value="cookies">{cookies[lang]}</MenuItem>
+                            <MenuItem value="pastries">{pastries[lang]}</MenuItem>
+                            <MenuItem value="bread">{bread[lang]}</MenuItem>
                         </Select>
                     </FormControl>
                 </Grid>
             </Grid>
             <br/>
-            <Typography className={classes.recipeMargin} variant="h4">{recipesFound.length + recipeText}</Typography>
+            <Typography className={classes.recipeMargin}
+                        variant="h4">{recipesFound.length + recipesFoundTxt[lang === 0 ? (recipesFound.length !== 1 ? 0 : 1) : (recipesFound.length !== 1 ? 2 : 3)]}
+            </Typography>
             <Divider className={classes.divideColour}/>
             <br/>
             {
@@ -229,7 +241,7 @@ function Finder() {
                                 <Grid item xs={12}>
                                     <Button className={classes.recipeMargin} variant="contained" color="primary"
                                             onClick={() => history.push("/recipes/" + recipeData.paths[i], {lang: lang})}>
-                                        Go To Recipe
+                                        {goToRecipe[lang]}
                                     </Button>
                                 </Grid>
                             </Grid>

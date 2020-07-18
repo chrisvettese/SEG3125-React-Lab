@@ -15,6 +15,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {useLocation, useHistory} from "react-router-dom";
 import IngredientsIcon from "./resources/ingredients.png"
 import InstructionsIcon from "./resources/instructions.png"
+import Snackbar from "@material-ui/core/Snackbar";
+import SnackbarContent from "@material-ui/core/SnackbarContent";
 
 const useStyles = makeStyles(() => ({
     recipeImage: {
@@ -59,6 +61,8 @@ function Recipes() {
     const location = useLocation();
     const history = useHistory();
 
+    const reviewPosted = ["Review Submitted.", "Examen soumis."]
+
     configureAnchors({offset: -55, scrollDuration: 0});
 
     const path = window.location.pathname.substring(9);
@@ -85,6 +89,14 @@ function Recipes() {
     const [newReview, setNewReview] = useState("");
     const [newRating, setNewRating] = useState(0);
     const [showNameError, setShowNameError] = useState(false);
+
+    const [open, setOpen] = React.useState(false);
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
 
     let initialLang = 0;
     if (history.location.state !== undefined && history.location.state.lang !== undefined) {
@@ -119,11 +131,27 @@ function Recipes() {
         setNewName("");
         setNewRating(0);
         setNewReview("");
+
+        setOpen(true);
     }
 
     return (
         <Route path={"/recipes/" + path} key={path}>
             <NavBar lang={lang} setLang={setLang}/>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                open={open}
+                autoHideDuration={3000}
+                onClose={handleClose}
+                message={reviewPosted[lang]}
+            >
+                <SnackbarContent style={{
+                    backgroundColor: "#F50057",
+                }} message={reviewPosted[lang]}/>
+            </Snackbar>
             <Typography align="center" variant="h3"
                         className={classes.bold}>{recipeData.names[rIndex] + "\u00a0"}</Typography>
             <Grid container justify="center">
