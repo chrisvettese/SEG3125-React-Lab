@@ -12,8 +12,9 @@ import NotFound from "./NotFound";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {useLocation} from "react-router-dom";
-import {useHistory} from "react-router";
+import {useLocation, useHistory} from "react-router-dom";
+import IngredientsIcon from "./resources/ingredients.png"
+import InstructionsIcon from "./resources/instructions.png"
 
 const useStyles = makeStyles(() => ({
     recipeImage: {
@@ -46,6 +47,10 @@ const useStyles = makeStyles(() => ({
     },
     standardFont: {
         fontSize: "1.1em"
+    },
+    titleIcon: {
+        width: "2em",
+        height: "2em"
     }
 }));
 
@@ -136,10 +141,17 @@ function Recipes() {
             <br/>
             <Typography className={classes.recipeParagraph}>{recipeData.descriptions[rIndex]}</Typography>
             <Divide/>
-            <Typography className={classes.recipeStandard} variant="h4">Ingredients</Typography>
+            <Grid container>
+                <Typography className={classes.recipeStandard} variant="h4">Ingredients</Typography>
+                <img src={IngredientsIcon} alt={"Ingredients Icon"} className={classes.titleIcon} title="Ingredients"/>
+            </Grid>
             <Typography className={classes.recipeParagraph}>{recipeData.ingredients[rIndex]}</Typography>
             <Divide/>
-            <Typography className={classes.recipeStandard} variant="h4">Instructions</Typography>
+            <Grid container>
+                <Typography className={classes.recipeStandard} variant="h4">Instructions</Typography>
+                <img src={InstructionsIcon} alt={"Instructions Icon"} className={classes.titleIcon}
+                     title="Instructions"/>
+            </Grid>
             <Typography className={classes.recipeParagraph}>{recipeData.instructions[rIndex]}</Typography>
             <Divide/>
             <ScrollableAnchor id={"reviews"}>
@@ -205,7 +217,7 @@ function Recipes() {
                 })
             }
             <br/>
-            <Footer/>
+            <Footer lang={lang}/>
         </Route>
     )
 }

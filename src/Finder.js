@@ -239,7 +239,7 @@ function Finder() {
                     )
                 })
             }
-            <Footer/>
+            <Footer lang={lang}/>
         </Fragment>
     );
 }

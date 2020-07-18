@@ -2,7 +2,8 @@ import {useHistory} from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import logo from "./resources/logo_en.png";
+import logoEng from "./resources/logo_en.png";
+import logoFr from "./resources/logo_fr.png";
 import React, {Fragment, useState} from "react";
 import {withStyles} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
@@ -20,11 +21,13 @@ const topStyles = makeStyles(() => ({
     },
     alignRight: {
         right: "0",
-        position: "absolute",
+        position: "fixed",
         marginRight: "2em"
     },
     toolBar: {
-        padding: "0"
+        padding: "0",
+        display: "flex",
+        alignItems: "space-between"
     }
 }));
 
@@ -86,6 +89,13 @@ function NavBar({lang, setLang}) {
     }
     const [tabValue, setTabValue] = useState(initialState);
 
+    //Website translations
+    const logo = [logoEng, logoFr];
+    const home = ["Home", "Accueil"];
+    const about = ["About", "À Propos"];
+    const recipes = ["Recipes", "Recettes"];
+    const contactUs = ["Contact Us", "Nous Contacter"];
+
     function changeTab(tab) {
         if (tab !== "recipes" || tabValue !== "recipes") {
             if (tab === "home") {
@@ -102,10 +112,10 @@ function NavBar({lang, setLang}) {
             <AppBar position="sticky">
                 <Toolbar className={classes.toolBar} variant="dense">
                     <Tabs value={tabValue}>
-                        <NavTab value="home" label="Home" onClick={() => changeTab("home")}/>
-                        <NavTab value="about" label="About" onClick={() => changeTab("about")}/>
-                        <NavTab value="recipes" label="Recipes" onClick={() => changeTab("recipes")}/>
-                        <NavTab value="contact" label="Contact Us" onClick={() => changeTab("contact")}/>
+                        <NavTab value="home" label={home[lang]} onClick={() => changeTab("home")}/>
+                        <NavTab value="about" label={about[lang]} onClick={() => changeTab("about")}/>
+                        <NavTab value="recipes" label={recipes[lang]} onClick={() => changeTab("recipes")}/>
+                        <NavTab value="contact" label={contactUs[lang]} onClick={() => changeTab("contact")}/>
                     </Tabs>
                     <RadioGroup className={classes.alignRight}
                                 aria-label="gender" row name="language" value={lang === 0 ? "english" : "french"}
@@ -116,18 +126,21 @@ function NavBar({lang, setLang}) {
                 </Toolbar>
             </AppBar>
             <a href={window.location.host} onClick={() => changeTab("home")}>
-                <img src={logo} alt="Logo" className={classes.logo}/>
+                <img src={logo[lang]} alt="Logo" className={classes.logo}/>
             </a>
         </Fragment>
     )
 }
 
-export function Footer() {
+export function Footer({lang}) {
     const classes = bottomStyles();
+
+    //Website translation
+    const label = ["Website by Chris Vettese", "Site Web par Chris Vettese"];
 
     return (
         <AppBar position="static" className={classes.appBar}>
-            <Typography align="center">Website by Chris Vettese</Typography>
+            <Typography align="center">{label[lang]}</Typography>
         </AppBar>
     )
 }
