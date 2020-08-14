@@ -20,10 +20,10 @@ ReactDOM.render(
             <Route exact path="/seg3125-react-lab">
                 <App/>
             </Route>
-            <Route exact path="/recipes">
+            <Route exact path="/seg3125-react-lab/recipes">
                 <Finder/>
             </Route>
-            <Route path="/recipes">
+            <Route path="/seg3125-react-lab/recipes">
                 <Recipes/>
             </Route>
             <Route path="/">

@@ -116,7 +116,7 @@ function App() {
             <Typography className={classes.sideAlign} variant="h4">{recipes[lang]}</Typography>
             <Typography className={classes.sideAlignText}>{recipeText1[lang]}</Typography>
             <Button className={classes.sideAlign} variant="contained" color="primary"
-                    onClick={() => history.push("/recipes", {lang: lang})}>{recipeButton[lang]}</Button>
+                    onClick={() => history.push("/seg3125-react-lab/recipes", {lang: lang})}>{recipeButton[lang]}</Button>
             <br/><br/>
             <Typography className={classes.sideAlignText}>{recipeText2[lang]}</Typography>
             <br/>

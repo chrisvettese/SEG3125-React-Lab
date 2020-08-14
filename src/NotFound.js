@@ -29,7 +29,7 @@ function NotFound() {
             <br/>
             <Grid container justify="center">
                 <Button variant="contained" color="primary"
-                        onClick={() => history.push("/", {lang: lang})}>{returnHome[lang]}</Button>
+                        onClick={() => history.push("/seg3125-react-lab", {lang: lang})}>{returnHome[lang]}</Button>
             </Grid>
         </Fragment>
     )

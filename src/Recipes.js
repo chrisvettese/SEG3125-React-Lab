@@ -67,7 +67,7 @@ function Recipes() {
 
     configureAnchors({offset: -55, scrollDuration: 0});
 
-    const path = window.location.pathname.substring(9);
+    const path = window.location.pathname.substring(27);
     const rIndex = recipeData.paths.indexOf(path);
     let tmpIndex = rIndex;
     if (rIndex === -1) {
@@ -138,7 +138,7 @@ function Recipes() {
     }
 
     return (
-        <Route path={"/recipes/" + path} key={path}>
+        <Route path={"/seg3125-react-lab/recipes/" + path} key={path}>
             <NavBar lang={lang} setLang={setLang}/>
             <Snackbar
                 anchorOrigin={{

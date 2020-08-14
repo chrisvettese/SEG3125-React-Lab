@@ -99,9 +99,9 @@ function NavBar({lang, setLang}) {
     function changeTab(tab) {
         if (tab !== "recipes" || tabValue !== "recipes") {
             if (tab === "home") {
-                history.push("/", {tab: tab, lang: lang});
+                history.push("/seg3125-react-lab", {tab: tab, lang: lang});
             } else {
-                history.push("/#" + tab, {tab: tab, lang: lang});
+                history.push("/seg3125-react-lab#" + tab, {tab: tab, lang: lang});
             }
         }
         setTabValue(tab);
