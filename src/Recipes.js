@@ -138,7 +138,7 @@ function Recipes() {
     }
 
     return (
-        <Route path={"/seg3125-react-lab/recipes/" + path} key={path}>
+        <Route path={"/bake-from-home/recipes/" + path} key={path}>
             <NavBar lang={lang} setLang={setLang}/>
             <Snackbar
                 anchorOrigin={{

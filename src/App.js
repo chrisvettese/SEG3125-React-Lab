@@ -63,7 +63,7 @@ function App() {
     const [lang, setLang] = useState(initialLang);
 
     //Website translations
-    const bakeFromHome = ["Bake From Home", "Cuire à la Maison"];
+    const bake-from-home = ["Bake From Home", "Cuire à la Maison"];
     const easy = ["Easy baking recipes you can make from home.", "Recettes de cuisson faciles que vous pouvez faire à la maison."]
     const about = ["About", "À Propos"];
     const aboutText = ["We create baking recipes that can easily be made at home. Our goal is to allow everyone to be able to make their own freshly baked goods. To start, go the recipe section to find the perfect recipe for you! If you have any questions, feel free to call or email us.", "Nous créons des recettes de pâtisserie qui peuvent facilement être faites à la maison. Notre objectif est de permettre à chacun de fabriquer ses propres produits de boulangerie. Pour commencer, allez dans la section des recettes pour trouver la recette parfaite pour vous! Si vous avez des questions, n'hésitez pas à nous appeler ou à nous envoyer un e-mail."]
@@ -72,7 +72,7 @@ function App() {
     const recipeButton = ["Go To Recipe Finder", "Aller à l'outil de recherche de recettes"];
     const recipeText2 = ["We are continuously adding new recipes. If you have any suggestions, please contact us!", "Nous ajoutons continuellement de nouvelles recettes. Si vous avez des suggestions, contactez-nous!"];
     const contactUs = ["Contact Us", "Nous Contacter"];
-    const contactText = ["Have any questions or suggestions? Reach us at help@bakefromhome.com, or 555-555-5555.", "Vous avez des questions ou des suggestions? Contactez-nous à help@bakefromhome.com, ou 555-555-5555."];
+    const contactText = ["Have any questions or suggestions? Reach us at help@bake-from-home.com, or 555-555-5555.", "Vous avez des questions ou des suggestions? Contactez-nous à help@bake-from-home.com, ou 555-555-5555."];
 
     useEffect(() => {
         setTimeout(() => {
@@ -94,7 +94,7 @@ function App() {
     return (
         <Fragment>
             <NavBar lang={lang} setLang={setLang}/>
-            <Typography align="center" variant="h3" className={classes.bold}>{bakeFromHome[lang]}</Typography>
+            <Typography align="center" variant="h3" className={classes.bold}>{bake-from-home[lang]}</Typography>
             <Typography align="center" className={classes.standardText}>{easy[lang]}</Typography>
             <Grid container justify="center">
                 <img className={classes.bigImage} src={recipeData.images[0]} alt={recipeData.names[0]}/>
@@ -116,7 +116,7 @@ function App() {
             <Typography className={classes.sideAlign} variant="h4">{recipes[lang]}</Typography>
             <Typography className={classes.sideAlignText}>{recipeText1[lang]}</Typography>
             <Button className={classes.sideAlign} variant="contained" color="primary"
-                    onClick={() => history.push("/seg3125-react-lab/recipes", {lang: lang})}>{recipeButton[lang]}</Button>
+                    onClick={() => history.push("/bake-from-home/recipes", {lang: lang})}>{recipeButton[lang]}</Button>
             <br/><br/>
             <Typography className={classes.sideAlignText}>{recipeText2[lang]}</Typography>
             <br/>

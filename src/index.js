@@ -17,13 +17,13 @@ ReactDOM.render(
             <Route exact path="/">
                 <App/>
             </Route>
-            <Route exact path="/seg3125-react-lab">
+            <Route exact path="/bake-from-home">
                 <App/>
             </Route>
-            <Route exact path="/seg3125-react-lab/recipes">
+            <Route exact path="/bake-from-home/recipes">
                 <Finder/>
             </Route>
-            <Route path="/seg3125-react-lab/recipes">
+            <Route path="/bake-from-home/recipes">
                 <Recipes/>
             </Route>
             <Route path="/">
