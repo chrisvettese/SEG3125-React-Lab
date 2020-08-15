@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3598ff7ab8b81b3b3127d78ebec734a9",
+    "revision": "679e38f182099ecc67a638c9c670517c",
     "url": "/bake-from-home/index.html"
   },
   {
-    "revision": "c64b645f5a9ae637cc06",
+    "revision": "e6c247bc2f7cb4896119",
     "url": "/bake-from-home/static/css/main.b689435b.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bake-from-home/static/js/2.7f37378c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c64b645f5a9ae637cc06",
-    "url": "/bake-from-home/static/js/main.90c7cb09.chunk.js"
+    "revision": "e6c247bc2f7cb4896119",
+    "url": "/bake-from-home/static/js/main.a08ebb47.chunk.js"
   },
   {
     "revision": "79926b25e2a8423b4a56",

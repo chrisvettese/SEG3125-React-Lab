@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/bake-from-home/static/css/main.b689435b.chunk.css",
-    "main.js": "/bake-from-home/static/js/main.90c7cb09.chunk.js",
-    "main.js.map": "/bake-from-home/static/js/main.90c7cb09.chunk.js.map",
+    "main.js": "/bake-from-home/static/js/main.a08ebb47.chunk.js",
+    "main.js.map": "/bake-from-home/static/js/main.a08ebb47.chunk.js.map",
     "runtime-main.js": "/bake-from-home/static/js/runtime-main.9ddc9d32.js",
     "runtime-main.js.map": "/bake-from-home/static/js/runtime-main.9ddc9d32.js.map",
     "static/js/2.7f37378c.chunk.js": "/bake-from-home/static/js/2.7f37378c.chunk.js",
     "static/js/2.7f37378c.chunk.js.map": "/bake-from-home/static/js/2.7f37378c.chunk.js.map",
     "index.html": "/bake-from-home/index.html",
-    "precache-manifest.37780b5e5b525f1d07fdb9c63b9110b0.js": "/bake-from-home/precache-manifest.37780b5e5b525f1d07fdb9c63b9110b0.js",
+    "precache-manifest.f2bdd8b1ce88f065e5a3a2cc1880fc38.js": "/bake-from-home/precache-manifest.f2bdd8b1ce88f065e5a3a2cc1880fc38.js",
     "service-worker.js": "/bake-from-home/service-worker.js",
     "static/css/main.b689435b.chunk.css.map": "/bake-from-home/static/css/main.b689435b.chunk.css.map",
     "static/js/2.7f37378c.chunk.js.LICENSE.txt": "/bake-from-home/static/js/2.7f37378c.chunk.js.LICENSE.txt",
@@ -30,6 +30,6 @@
     "static/js/runtime-main.9ddc9d32.js",
     "static/js/2.7f37378c.chunk.js",
     "static/css/main.b689435b.chunk.css",
-    "static/js/main.90c7cb09.chunk.js"
+    "static/js/main.a08ebb47.chunk.js"
   ]
 }
