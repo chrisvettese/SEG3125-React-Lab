@@ -109,7 +109,7 @@ function NavBar({lang, setLang}) {
 
     return (
         <Fragment>
-            <AppBar position="sticky">
+            <AppBar position="fixed">
                 <Toolbar className={classes.toolBar} variant="dense">
                     <Tabs value={tabValue}>
                         <NavTab value="home" label={home[lang]} onClick={() => changeTab("home")}/>
@@ -117,7 +117,7 @@ function NavBar({lang, setLang}) {
                         <NavTab value="recipes" label={recipes[lang]} onClick={() => changeTab("recipes")}/>
                         <NavTab value="contact" label={contactUs[lang]} onClick={() => changeTab("contact")}/>
                     </Tabs>
-                    <RadioGroup className={classes.alignRight}
+                    <RadioGroup position="relative" className={classes.alignRight}
                                 aria-label="gender" row name="language" value={lang === 0 ? "english" : "french"}
                                 onChange={(event) => setLang(event.target.value === "english" ? 0 : 1)}>
                         <FormControlLabel value="english" control={<Radio/>} label="English"/>
