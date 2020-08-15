@@ -63,7 +63,7 @@ function App() {
     const [lang, setLang] = useState(initialLang);
 
     //Website translations
-    const bake-from-home = ["Bake From Home", "Cuire à la Maison"];
+    const bakeFromHome = ["Bake From Home", "Cuire à la Maison"];
     const easy = ["Easy baking recipes you can make from home.", "Recettes de cuisson faciles que vous pouvez faire à la maison."]
     const about = ["About", "À Propos"];
     const aboutText = ["We create baking recipes that can easily be made at home. Our goal is to allow everyone to be able to make their own freshly baked goods. To start, go the recipe section to find the perfect recipe for you! If you have any questions, feel free to call or email us.", "Nous créons des recettes de pâtisserie qui peuvent facilement être faites à la maison. Notre objectif est de permettre à chacun de fabriquer ses propres produits de boulangerie. Pour commencer, allez dans la section des recettes pour trouver la recette parfaite pour vous! Si vous avez des questions, n'hésitez pas à nous appeler ou à nous envoyer un e-mail."]
@@ -94,7 +94,7 @@ function App() {
     return (
         <Fragment>
             <NavBar lang={lang} setLang={setLang}/>
-            <Typography align="center" variant="h3" className={classes.bold}>{bake-from-home[lang]}</Typography>
+            <Typography align="center" variant="h3" className={classes.bold}>{bakeFromHome[lang]}</Typography>
             <Typography align="center" className={classes.standardText}>{easy[lang]}</Typography>
             <Grid container justify="center">
                 <img className={classes.bigImage} src={recipeData.images[0]} alt={recipeData.names[0]}/>
