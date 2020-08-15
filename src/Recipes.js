@@ -67,7 +67,7 @@ function Recipes() {
 
     configureAnchors({offset: -55, scrollDuration: 0});
 
-    const path = window.location.pathname.substring(27);
+    const path = window.location.pathname.substring(24);
     const rIndex = recipeData.paths.indexOf(path);
     let tmpIndex = rIndex;
     if (rIndex === -1) {
